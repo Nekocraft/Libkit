@@ -19,6 +19,8 @@ import org.bukkit.configuration.MemoryConfiguration;
  * This is a base class for all File based implementations of {@link Configuration}
  */
 public abstract class FileConfiguration extends MemoryConfiguration {
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
     /**
      * Creates an empty {@link FileConfiguration} with no default values.
      */
@@ -55,11 +57,13 @@ public abstract class FileConfiguration extends MemoryConfiguration {
 
         FileWriter writer = new FileWriter(file);
 
+		//Libigot start - Use set line separators (instead of just a specific designated one).
         try {
-            writer.write(data);
+            writer.write(data.replaceAll("\\r?\\n", LINE_SEPARATOR));
         } finally {
             writer.close();
         }
+		//Libigot end
     }
 
     /**
