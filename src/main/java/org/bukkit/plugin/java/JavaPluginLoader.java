@@ -51,7 +51,7 @@ import com.google.common.collect.ImmutableList;
  * Represents a Java plugin loader, allowing plugins in the form of .jar
  */
 public class JavaPluginLoader implements PluginLoader {
-    private final Server server;
+    protected final Server server;
     protected final Pattern[] fileFilters = new Pattern[] { Pattern.compile("\\.jar$"), };
     protected final Map<String, Class<?>> classes = new ConcurrentHashMap<String, Class<?>>();
     protected final Map<String, PluginClassLoader> loaders = new LinkedHashMap<String, PluginClassLoader>();
