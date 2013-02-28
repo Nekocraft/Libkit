@@ -5,9 +5,10 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
-public class PlayerItemDamageEvent extends PlayerEvent implements Cancellable {
 
+public class PlayerItemDamageEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
+
     private final ItemStack item;
     private int damage;
     private boolean cancelled = false;
@@ -24,7 +25,7 @@ public class PlayerItemDamageEvent extends PlayerEvent implements Cancellable {
 
     /**
      * Gets the amount of durability damage this item will be taking.
-     *
+     * 
      * @return durability change
      */
     public int getDamage() {
