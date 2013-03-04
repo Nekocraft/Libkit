@@ -1,44 +1,41 @@
-Bukkit
-======
+Libkit
+=============
+Liberate Bukkit (Libkit for short) is a Bukkit API fork that has enhanced features and optimizations as well as compability adjustments to allow older plugins that do not support the new namespace version system that Bukkit put into place.
 
-A Minecraft Server API.
+## Contributing
+Are you a talented programmer looking to contribute some code? We'd love the help!
+* Any section inside OBC or NMS should be commented with "Libigot start" or "Libigot end", unless it belongs to a single line, in which case "Libigot" should be commented next to that line.
+* The code you write should be as clean as possible.
+* If you have to unshade classes first add them unchanged with a commit message like "Add <classname> for diff visibility.", then make your changes with the next commit.
+* You should only modify something if it is server-side. If the change you make affects client-side, it will not work, and it should be denied/removed.
+* All commits should have a title and a bulleted description with each of the added features and/or restrictions.
 
-Website: [http://bukkit.org](http://bukkit.org)  
-Bugs/Suggestions: [http://leaky.bukkit.org](http://leaky.bukkit.org)
+## The license
+Libkit and Libigot are licensed under the [GPLv3 License][License].
 
-Compilation
------------
+## Getting the source
+The latest and greatest source can be found here on [GitHub][Source].
 
-We use maven to handle our dependencies.
+If you are using Git, use this command to clone the project:
 
-* Install [Maven 3](http://maven.apache.org/download.html)
-* Check out this repo and: `mvn clean install`
+    git clone git://github.com/AlmuraDev/Libkit.git
 
-Coding and Pull Request Conventions
------------
+## Compiling the source
+Libkit uses Maven to handle its dependencies.
 
-* We generally follow the Sun/Oracle coding standards.
-* No tabs; use 4 spaces instead.
-* No trailing whitespaces.
-* No CRLF line endings, LF only, put your gits 'core.autocrlf' on 'true'.
-* No 80 column limit or 'weird' midstatement newlines.
-* The number of commits in a pull request should be kept to a minimum (squish them into one most of the time - use common sense!).
-* No merges should be included in pull requests unless the pull request's purpose is a merge.
-* Pull requests should be tested (does it compile? AND does it work?) before submission.
-* Any major additions should have documentation ready and provided if applicable (this is usually the case).
-* Most pull requests should be accompanied by a corresponding Leaky ticket so we can associate commits with Leaky issues (this is primarily for changelog generation on dl.bukkit.org).
-* Try to follow test driven development where applicable.
+* Install [Maven 2 or 3](http://maven.apache.org/download.html)  
+* Checkout this repo and run: `mvn clean install`
 
-Tips to get your pull request accepted
------------
-Making sure you follow the above conventions is important, but just the beginning. Follow these tips to better the chances of your pull request being accepted and pulled.
+## Learn More
+* [Homepage]
+* [Source]
+* [Builds]
+* [Issues]
+* [License]
+* <strong>IRC</strong>: #libigot on irc.esper.net
 
-* Make sure you follow all of our conventions to the letter.
-* Make sure your code compiles under Java 5.
-* Provide proper JavaDocs where appropriate.
-* Provide proper accompanying documentation where appropriate.
-* Test your code.
-* Make sure to follow coding best practises.
-* Provide a test plugin binary and source for us to test your code with.
-* Your pull request should link to accompanying pull requests.
-* The description of your pull request should provide detailed information on the pull along with justification of the changes where applicable.
+[Homepage]: http://www.libigot.org
+[License]: http://www.gnu.org/licenses/gpl.html
+[Source]: https://github.com/AlmuraDev/Libkit.git
+[Builds]: http://build.libigot.org
+[Issues]: https://github.com/AlmuraDev/Libigot/issues
