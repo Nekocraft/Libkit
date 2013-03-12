@@ -18,7 +18,7 @@ The latest and greatest source can be found here on [GitHub][Source].
 
 If you are using Git, use this command to clone the project:
 
-    git clone git://github.com/AlmuraDev/Libkit.git
+    git clone git://github.com/Libigot/Libkit.git
 
 ## Compiling the source
 Libkit uses Maven to handle its dependencies.
@@ -36,6 +36,6 @@ Libkit uses Maven to handle its dependencies.
 
 [Homepage]: http://www.libigot.org
 [License]: http://www.gnu.org/licenses/gpl.html
-[Source]: https://github.com/AlmuraDev/Libkit.git
+[Source]: https://github.com/Libigot/Libkit.git
 [Builds]: http://build.libigot.org
-[Issues]: https://github.com/AlmuraDev/Libigot/issues
+[Issues]: https://github.com/Libigot/Libigot/issues
