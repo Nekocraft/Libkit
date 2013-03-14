@@ -424,8 +424,14 @@ public class JavaPluginLoader implements PluginLoader {
                         }
                         method.invoke(listener, event);
                     } catch (InvocationTargetException ex) {
+                        server.getLogger().warning("==== Start Libigot Debug ==="); // Libigot
+                        ex.printStackTrace();
+                        server.getLogger().warning("==== End Libigot Debug ==="); // Libigot
                         throw new EventException(ex.getCause());
                     } catch (Throwable t) {
+                        server.getLogger().warning("==== Start Libigot Debug ==="); // Libigot
+                        t.printStackTrace();
+                        server.getLogger().warning("==== End Libigot Debug ==="); // Libigot
                         throw new EventException(t);
                     }
                 }
