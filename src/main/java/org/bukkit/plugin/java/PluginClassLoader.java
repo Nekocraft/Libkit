@@ -9,7 +9,12 @@ import java.util.logging.Level;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.AuthorNagException;
+// Libigot start
+import java.io.InputStream;
 
+import java.security.CodeSigner;
+import java.security.CodeSource;
+// Libigot end
 /**
  * A ClassLoader for plugins, to allow shared classes across multiple plugins
  */
@@ -17,6 +22,10 @@ public class PluginClassLoader extends URLClassLoader {
     private final JavaPluginLoader loader;
     private final Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
     final boolean extended = this.getClass() != PluginClassLoader.class;
+    // Libigot start
+    private final CodeSigner[] signers = new CodeSigner[0];
+    private byte[] data;
+    // Libigot end
 
     /**
      * Internal class not intended to be exposed
@@ -53,6 +62,19 @@ public class PluginClassLoader extends URLClassLoader {
         return extended ? findClass(name, true) : findClass0(name, true); // Don't warn on deprecation, but maintain overridability
     }
 
+    // Libigot start
+    private void ensurePackageLoaded(String name) {
+        int i = name.lastIndexOf('.');
+        if (i != -1) {
+            String pkgname = name.substring(0, i);
+            // If not yet defined, define it
+            if (getPackage(pkgname) == null) {
+                definePackage(pkgname, null, null, null, null, null, null, null);
+            }
+        }
+    }
+    // Libigot end
+
     /**
      * @deprecated Internal method that wasn't intended to be exposed
      */
@@ -66,16 +88,9 @@ public class PluginClassLoader extends URLClassLoader {
     }
 
     Class<?> findClass0(String name, boolean checkGlobal) throws ClassNotFoundException {
-        if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.")) {
+        if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.") || name.startsWith("org.Libigotdev.")) { // Libigot
             throw new ClassNotFoundException(name);
         }
-
-        // Spigot start
-        if (checkGlobal && name.equals("org.mcstats.Metrics")) {
-            loader.server.getLogger().warning("Plugin from file: " + getURLs()[0] + " has embedded Metrics in the default package. This is not advisable, go nag them!");
-        }
-        // Spigot end
-
         Class<?> result = classes.get(name);
 
         if (result == null) {
@@ -84,15 +99,39 @@ public class PluginClassLoader extends URLClassLoader {
             }
 
             if (result == null) {
-                result = super.findClass(name);
+                // Libigot start
+                try {
+                    // Ensure that the package is loaded
+                    ensurePackageLoaded(name);
 
-                if (result != null) {
-                    if (loader.extended) { // Don't warn on deprecation, but maintain overridability
-                        loader.setClass(name, result);
-                    } else {
-                        loader.setClass0(name, result);
+                    // Load the resource to the name
+                    String path = name.replace('.', '/').concat(".class");
+                    URL res = this.findResource(path);
+                    if (res != null) {
+                        InputStream stream = res.openStream();
+                        if (stream != null) {
+                            // Remap the classes
+                            data = ClassRemapper.instance.remap(stream);
+                            // Define (create) the class using the modified byte code
+                            // The top-child class loader is used for this to prevent access violations
+                            // Also we fix the URL so it matches the one from URLClassLoader
+                            String newString = res.toString();
+                            if(newString.startsWith("jar:") && newString.contains("!")) {
+                                newString = newString.substring(4, newString.indexOf("!"));
+                                res = new URL(newString);
+                            }
+                            CodeSource cs = new CodeSource(res, signers);
+                            result = this.defineClass(name, data, 0, data.length, cs);
+                            if (result != null) {
+                                // Resolve it - sets the class loader of the class
+                                this.resolveClass(result);
+                            }
+                        }
                     }
+                } catch (Throwable t) {
+                    throw new ClassNotFoundException("Internal Libigot error", t);
                 }
+                // Libigot end
             }
 
             classes.put(name, result);
