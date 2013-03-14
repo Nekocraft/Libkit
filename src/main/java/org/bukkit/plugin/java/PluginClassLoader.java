@@ -88,7 +88,7 @@ public class PluginClassLoader extends URLClassLoader {
     }
 
     Class<?> findClass0(String name, boolean checkGlobal) throws ClassNotFoundException {
-        if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.") || name.startsWith("org.Libigotdev.")) { // Libigot
+        if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.") || name.startsWith("org.libigot.")) { // Libigot
             throw new ClassNotFoundException(name);
         }
         Class<?> result = classes.get(name);
