@@ -9,6 +9,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.potion.PotionEffect;
 
+/**
+ * This Event is called whenever a Entity gets affected by
+ * a Potion effect caused from a Beacon.
+ */
 public class BeaconPotionEffectEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
@@ -16,6 +20,12 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
     private List<HumanEntity> humans;
     private List<PotionEffect> potions;
 
+    /**
+     * The constructor for the event.
+     * 
+     * @param humans A list of HumanEntities affected by this event.
+     * @param potions A list of PotionEffects the entities should be affected with.
+     */
     public BeaconPotionEffectEvent(List<HumanEntity> humans, List<PotionEffect> potions) {
         this.humans = (humans != null ? humans : new ArrayList<HumanEntity>());
         this.potions = (potions != null ? potions : new ArrayList<PotionEffect>());
@@ -23,54 +33,54 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
     }
 
     /**
-     * Cancel or uncancel the event.
+     * Sets the cancelled state of the event
      * 
-     * @param isCancelled New cancelled state.
+     * @param true if the event should be cancelled, false otherwise.
      */
     public void setCancelled(boolean isCancelled) {
         this.isCancelled = isCancelled;
     }
 
     /**
-     * Set affected players.
+     * Sets affected players.
      * 
-     * @param humans Affected players.
+     * @param humans A list of HumanEntities affected by this event.
      */
     public void setEntities(List<HumanEntity> humans) {
         this.humans = (humans != null ? humans : new ArrayList<HumanEntity>());
     }
 
     /**
-     * Set applied potions.
+     * Sets applied potions.
      * 
-     * @param potions Applied potions.
+     * @param potions A list of PotionEffects the entities should be affected with.
      */
     public void setEffects(List<PotionEffect> potions) {
         this.potions = (potions != null ? potions : new ArrayList<PotionEffect>());
     }
 
     /**
-     * Returns affected players.
+     * Gets affected players.
      * 
-     * @return List of affected players.
+     * @return Thelist of HumanEntities affected by this event.
      */
     public List<HumanEntity> getEntities() {
         return this.humans;
     }
 
     /**
-     * Returns applied potions.
+     * Gets applied potions.
      * 
-     * @return Applied potions.
+     * @return The list of PotionEffects the entities should be affected with.
      */
     public List<PotionEffect> getEffects() {
         return this.potions;
     }
 
     /**
-     * Is the event cancelled?
+     * Gets the cancelled state of the event.
      * 
-     * @return Is it?
+     * @return true if the event should be cancelled, false otherwise.
      */
     public boolean isCancelled() {
         return this.isCancelled;
