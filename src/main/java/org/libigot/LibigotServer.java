@@ -72,4 +72,11 @@ public interface LibigotServer {
      * @param debug true to set the server is in debug mode, false to disable it
      */
     public void setDebug(boolean debug);
+    
+    /**
+     * Gets the minecraft servers current tick.
+     * 
+     * @return the current tick.
+     */
+    public int getCurrentTick();
 }
