@@ -42,6 +42,7 @@ import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.TimedRegisteredListener;
 import org.bukkit.plugin.UnknownDependencyException;
+import org.libigot.Libigot; // Libigot
 import org.yaml.snakeyaml.error.YAMLException;
 
 import com.google.common.collect.ImmutableList;
@@ -424,8 +425,26 @@ public class JavaPluginLoader implements PluginLoader {
                         }
                         method.invoke(listener, event);
                     } catch (InvocationTargetException ex) {
+                        // Libigot start
+                        if(Libigot.getServer().getDebug()) {
+                            ex.printStackTrace();
+                        }
+                        /*
+                        server.getLogger().warning("==== Start Spigot Debug ===");
+                        ex.printStackTrace();
+                        server.getLogger().warning("==== End Spigot Debug ===");
+                        */
                         throw new EventException(ex.getCause());
                     } catch (Throwable t) {
+                        if(Libigot.getServer().getDebug()) {
+                            t.printStackTrace();
+                        }
+                        /*
+                        server.getLogger().warning("==== Start Spigot Debug ===");
+                        t.printStackTrace();
+                        server.getLogger().warning("==== End Spigot Debug ===");
+                        */
+                        // Libigot end
                         throw new EventException(t);
                     }
                 }
