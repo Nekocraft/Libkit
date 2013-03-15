@@ -1,8 +1,10 @@
 package org.libigot;
 
+
 public class Libigot {
 
     private static LibigotServer server;
+    static LibigotScheduler scheduler;
 
     /**
      * Returns the LibigotServer instance.
@@ -21,5 +23,12 @@ public class Libigot {
                 Libigot.server.setDebug(server.getDebug());
             }
         }
+    }
+
+    public static LibigotScheduler setScheduler(LibigotScheduler scheduler) {
+        if(scheduler != null && Libigot.scheduler == null) {
+            Libigot.scheduler = scheduler;
+        }
+        return Libigot.scheduler;
     }
 }
