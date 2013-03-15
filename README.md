@@ -32,7 +32,7 @@ Libkit uses Maven to handle its dependencies.
 * [Builds]
 * [Issues]
 * [License]
-* [IRC] (#libigot on irc.esper.net)
+* [IRC] - #libigot on irc.esper.net
 
 [Homepage]: http://www.libigot.org
 [License]: http://www.gnu.org/licenses/gpl.html
