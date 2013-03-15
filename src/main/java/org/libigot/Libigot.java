@@ -2,7 +2,7 @@ package org.libigot;
 
 public class Libigot {
 
-    public static LibigotServer server;
+    private static LibigotServer server;
     
     /**
      * Returns the LibigotServer instance.
@@ -11,5 +11,15 @@ public class Libigot {
      */
     public static LibigotServer getServer() {
         return Libigot.server;
+    }
+    
+    public static void setServer(LibigotServer server) {
+        if (server != null) {
+            if (Libigot.server == null) {
+                Libigot.server = server;
+            } else {
+                Libigot.server.setDebug(server.getDebug());
+            }
+        }
     }
 }
