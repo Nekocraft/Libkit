@@ -44,7 +44,7 @@ public class ClassRemapper extends Remapper {
 
     private String convert(String text, String packagePath, int startIndex) {
         String name = text.substring(startIndex + packagePath.length() + 1);
-        if (name.startsWith("v") && !name.startsWith(version)) {
+        if (name.startsWith("v")) {
             int firstidx = name.indexOf('_');
             if (firstidx != -1) {
                 // Check if the major version is a valid number
@@ -61,6 +61,9 @@ public class ClassRemapper extends Remapper {
                     // Major test fail
                 }
             }
+        }
+        if(!packagePath.endsWith("/") && !name.startsWith("/")) {
+            name = "/"+name;
         }
         return text.substring(0, startIndex) + packagePath + name;
     }
