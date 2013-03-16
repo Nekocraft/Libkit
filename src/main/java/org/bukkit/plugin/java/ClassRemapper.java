@@ -16,13 +16,10 @@ public class ClassRemapper extends Remapper {
 
     // TODO: Lazy workaround against mavens shading.
     ClassRemapper() {
-        PACKAGE_ROOTS[0] = "net";
-        PACKAGE_ROOTS[0] += "/minecraft/server";
-        PACKAGE_ROOTS[1] = "org";
-        PACKAGE_ROOTS[1] += "/bukkit/craftbukkit";
-        // This is to get the package version from maven:
-        String maven = "net/minecraft/server";
-        version = maven.substring(21);
+        PACKAGE_ROOTS[0] = "net/minecraft/server";
+        PACKAGE_ROOTS[1] = "org/bukkit/craftbukkit";
+        // TODO Always update this when CB updates it in the pom.xml:
+        version = "v1_5_R1";
     }
     
     @Override
@@ -47,7 +44,7 @@ public class ClassRemapper extends Remapper {
 
     private String convert(String text, String packagePath, int startIndex) {
         String name = text.substring(startIndex + packagePath.length() + 1);
-        if (name.startsWith("v")) {
+        if (name.startsWith("v") && !name.startsWith(version)) {
             int firstidx = name.indexOf('_');
             if (firstidx != -1) {
                 // Check if the major version is a valid number
@@ -65,7 +62,7 @@ public class ClassRemapper extends Remapper {
                 }
             }
         }
-        return text.substring(0, startIndex) + packagePath + "/" + version + name;
+        return text.substring(0, startIndex) + packagePath + name;
     }
 
     public byte[] remap(InputStream stream) throws IOException {
