@@ -16,10 +16,13 @@ public class ClassRemapper extends Remapper {
 
     // TODO: Lazy workaround against mavens shading.
     ClassRemapper() {
-        PACKAGE_ROOTS[0] = "net/minecraft/server";
-        PACKAGE_ROOTS[1] = "org/bukkit/craftbukkit";
-        // TODO Always update this when CB updates it in the pom.xml:
-        version = "v1_5_R1";
+        PACKAGE_ROOTS[0] = "net";
+        PACKAGE_ROOTS[0] += "/minecraft/server";
+        PACKAGE_ROOTS[1] = "org";
+        PACKAGE_ROOTS[1] += "/bukkit/craftbukkit";
+        // This is to get the package version from maven:
+        String maven = "net/minecraft/server";
+        version = maven.substring(21);
     }
     
     @Override
@@ -62,16 +65,20 @@ public class ClassRemapper extends Remapper {
                 }
             }
         }
-        if(!packagePath.endsWith("/") && !name.startsWith("/")) {
-            name = "/"+name;
+        if(!name.startsWith("/")) {
+            name = "/" + name;
         }
-        return text.substring(0, startIndex) + packagePath + name;
+        return text.substring(0, startIndex) + packagePath + "/" + version + name;
     }
 
     public byte[] remap(InputStream stream) throws IOException {
         ClassReader classReader = new ClassReader(stream);
         ClassWriter classWriter = new ClassWriter(classReader, 0);
-        classReader.accept(new RemappingClassAdapter(classWriter, instance), ClassReader.EXPAND_FRAMES);
+        classReader.accept(new LibigotClassVisitor(classWriter, instance), ClassReader.EXPAND_FRAMES);
         return classWriter.toByteArray();
+    }
+
+    public static Class<?> fakeForName(String name) throws ClassNotFoundException {
+        return Class.forName(instance.filter(name.replace('.', '/')).replace('/', '.'));
     }
 }
