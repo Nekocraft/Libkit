@@ -1,5 +1,7 @@
 package org.bukkit.entity;
 
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+
 /**
  * Represents an {@link Entity} that has health and can take damage.
  */
@@ -18,6 +20,36 @@ public interface Damageable extends Entity {
      * @param source Entity which to attribute this damage from
      */
     void damage(int amount, Entity source);
+
+    /**
+     * Heals the given amount of damage on this entity. If the amount given
+     * would overheal the entity, the health will be capped at maximum.
+     * 
+     * If you want to fully heal an entity, use {@link #setHealth(int)}
+     * ({@link #getMaxHealth()}) instead of passing a huge number.
+     * <p />
+     * This method will, as a side effect, call a {@link org.bukkit.event.entity.EntityRegainHealthEvent}
+     * with a reason of CUSTOM.
+     *
+     * @param amount Amount of damage to heal
+     * @throws IllegalArgumentException on negative values
+     */
+    void heal(int amount);
+
+    /**
+     * Heals the given amount of damage on this entity. If the amount given
+     * would overheal the entity, the health will be capped at maximum.
+     * 
+     * If you want to fully heal an entity, use {@link #setHealth(int)}
+     * ({@link #getMaxHealth()}) instead of passing a huge number.
+     * <p />
+     * This method will, as a side effect, call a {@link org.bukkit.event.entity.EntityRegainHealthEvent}
+     * with the specified reason.
+     *
+     * @param amount Amount of damage to heal
+     * @throws IllegalArgumentException on negative values
+     */
+    void heal(int amount, EntityRegainHealthEvent.RegainReason reason);
 
     /**
      * Gets the entity's health from 0 to {@link #getMaxHealth()}, where 0 is dead.
