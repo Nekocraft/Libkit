@@ -11,13 +11,14 @@ import org.bukkit.inventory.ItemStack;
 public class InventoryClickEvent extends InventoryEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private SlotType slot_type;
-    private boolean shiftClick;
-    private MouseButton button;
+    private boolean shiftClick; // Libigot
+    private MouseButton button; // Libigot
     private Result result;
     private int whichSlot;
     private int rawSlot;
     private ItemStack current = null;
 
+    // Libigot start
     /**
      * Represents a mouse click action
      */
@@ -35,21 +36,24 @@ public class InventoryClickEvent extends InventoryEvent implements Cancellable {
          */
         RIGHT;
     }
+    // Libigot end
 
-    @Deprecated
+    @Deprecated // Libigot
     public InventoryClickEvent(InventoryView what, SlotType type, int slot, boolean right, boolean shift) {
         this(what, type, slot, (right ? MouseButton.RIGHT : MouseButton.LEFT), shift);
     }
 
+    // Libigot start
     public InventoryClickEvent(InventoryView what, SlotType type, int slot, MouseButton button, boolean shift) {
         super(what);
         this.slot_type = type;
-        this.button = button;
+        this.button = button; // Libigot
         this.shiftClick = shift;
         this.result = Result.DEFAULT;
         this.rawSlot = slot;
         this.whichSlot = what.convertSlot(slot);
     }
+    // Libigot end
 
     /**
      * Get the type of slot that was clicked.
@@ -77,20 +81,21 @@ public class InventoryClickEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * @deprecated in favor of {@link #getButton()}
+     * @deprecated in favor of {@link #getButton()} // Libigot
      * @return True if the click is a right-click.
      */
-    @Deprecated
+    @Deprecated // Libigot
     public boolean isRightClick() {
-        return button == MouseButton.RIGHT;
+        return button == MouseButton.RIGHT; // Libigot
     }
 
     /**
      * @deprecated in favor of {@link #getButton()}
      * @return True if the click is a left-click.
      */
-    @Deprecated
+    @Deprecated // Libigot
     public boolean isLeftClick() {
+        // Libigot start
         return button == MouseButton.LEFT;
     }
 
@@ -100,9 +105,10 @@ public class InventoryClickEvent extends InventoryEvent implements Cancellable {
     public MouseButton getButton() {
         return button;
     }
+    // Libigot end
 
     /**
-     * Shift can be combined with any click as a modifier.
+     * Shift can be combined with any click as a modifier. // Libigot
      * @return True if the click is a shift-click.
      */
     public boolean isShiftClick() {

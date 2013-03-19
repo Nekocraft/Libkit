@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
-import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent; // Libigot
 
 /**
  * Represents an {@link Entity} that has health and can take damage.
@@ -21,6 +21,7 @@ public interface Damageable extends Entity {
      */
     void damage(int amount, Entity source);
 
+    // Libigot start
     /**
      * Heals the given amount of damage on this entity. If the amount given
      * would overheal the entity, the health will be capped at maximum.
@@ -35,6 +36,7 @@ public interface Damageable extends Entity {
      * @throws IllegalArgumentException on negative values
      */
     void heal(int amount);
+    // Libigot end
 
     /**
      * Heals the given amount of damage on this entity. If the amount given
