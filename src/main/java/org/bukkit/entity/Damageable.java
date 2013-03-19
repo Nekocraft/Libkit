@@ -1,5 +1,7 @@
 package org.bukkit.entity;
 
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+
 /**
  * Represents an {@link Entity} that has health and can take damage.
  */
@@ -34,6 +36,70 @@ public interface Damageable extends Entity {
      */
     @Deprecated
     void _INVALID_damage(int amount, Entity source);
+
+    // Libigot start
+    /**
+     * Heals the given amount of damage on this entity. If the amount given
+     * would overheal the entity, the health will be capped at maximum.
+     *
+     * If you want to fully heal an entity, use {@link #setHealth(double)}
+     * ({@link #getMaxHealth()}) instead of passing a huge number.
+     * <p />
+     * This method will, as a side effect, call a {@link org.bukkit.event.entity.EntityRegainHealthEvent}
+     * with a reason of CUSTOM.
+     *
+     * @param amount Amount of damage to heal
+     * @throws IllegalArgumentException on negative values
+     */
+    void heal(double amount);
+
+    /**
+     * Heals the given amount of damage on this entity. If the amount given
+     * would overheal the entity, the health will be capped at maximum.
+     *
+     * If you want to fully heal an entity, use {@link #_INVALID_setHealth(int)}}
+     * ({@link #getMaxHealth()}) instead of passing a huge number.
+     * <p />
+     * This method will, as a side effect, call a {@link org.bukkit.event.entity.EntityRegainHealthEvent}
+     * with a reason of CUSTOM.
+     *
+     * @param amount Amount of damage to heal
+     * @throws IllegalArgumentException on negative values
+     */
+    @Deprecated
+    void _INVALID_heal(int amount);
+
+    /**
+     * Heals the given amount of damage on this entity. If the amount given
+     * would overheal the entity, the health will be capped at maximum.
+     *
+     * If you want to fully heal an entity, use {@link #setHealth(double)}
+     * ({@link #getMaxHealth()}) instead of passing a huge number.
+     * <p />
+     * This method will, as a side effect, call a {@link org.bukkit.event.entity.EntityRegainHealthEvent}
+     * with the specified reason.
+     *
+     * @param amount Amount of damage to heal
+     * @throws IllegalArgumentException on negative values
+     */
+    void heal(double amount, EntityRegainHealthEvent.RegainReason reason);
+
+    /**
+     * Heals the given amount of damage on this entity. If the amount given
+     * would overheal the entity, the health will be capped at maximum.
+     *
+     * If you want to fully heal an entity, use {@link #_INVALID_setHealth(int)}
+     * ({@link #getMaxHealth()}) instead of passing a huge number.
+     * <p />
+     * This method will, as a side effect, call a {@link org.bukkit.event.entity.EntityRegainHealthEvent}
+     * with the specified reason.
+     *
+     * @param amount Amount of damage to heal
+     * @throws IllegalArgumentException on negative values
+     */
+    @Deprecated
+    void _INVALID_heal(int amount, EntityRegainHealthEvent.RegainReason reason);
+    // Libigot end
 
     /**
      * Gets the entity's health from 0 to {@link #getMaxHealth()}, where 0 is dead.
