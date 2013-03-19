@@ -1,3 +1,4 @@
+// Libigot start
 package org.bukkit.block;
 
 public interface CommandBlock extends BlockState {
@@ -38,3 +39,4 @@ public interface CommandBlock extends BlockState {
      */
     public void setName(String name);
 }
+// Libigot end
