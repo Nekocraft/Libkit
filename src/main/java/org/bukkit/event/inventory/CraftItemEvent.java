@@ -8,8 +8,15 @@ import org.bukkit.inventory.Recipe;
 public class CraftItemEvent extends InventoryClickEvent {
     private Recipe recipe;
 
-    public CraftItemEvent(Recipe recipe, InventoryView what, SlotType type, int slot, boolean right, boolean shift, boolean doubleClick) {
-        super(what, type, slot, right, shift, doubleClick);
+    // Libigot start
+    @Deprecated
+    public CraftItemEvent(Recipe recipe, InventoryView what, SlotType type, int slot, boolean right, boolean shift) {
+        this(recipe, what, type, slot, (right ? MouseButton.RIGHT : MouseButton.LEFT), shift);
+    }
+
+    public CraftItemEvent(Recipe recipe, InventoryView what, SlotType type, int slot, MouseButton button, boolean shift) {
+        super(what, type, slot, button, shift);
+        // Libigot end
         this.recipe = recipe;
     }
 
