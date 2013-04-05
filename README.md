@@ -21,10 +21,10 @@ If you are using Git, use this command to clone the project:
     git clone git://github.com/Libigot/Libkit.git
 
 ## Compiling the source
-Libkit uses Maven to handle its dependencies.
+Libigot and Libkit use Maven to handle its dependencies.
 
-* Install [Maven 2 or 3](http://maven.apache.org/download.html)  
-* Checkout this repo and run: `mvn clean install`
+* Install [Maven 3](http://maven.apache.org/download.html)  
+* Checkout this repo and run: `mvn`
 
 ## Learn More
 * [Homepage]
@@ -37,7 +37,6 @@ Libkit uses Maven to handle its dependencies.
 [Homepage]: http://www.libigot.org
 [License]: http://www.gnu.org/licenses/gpl.html
 [Source]: https://github.com/Libigot/Libigot.git
-[Libkit]: http://github.com/Libigot/Libkit
 [Builds]: http://build.libigot.org
 [Issues]: https://github.com/Libigot/Libigot/issues
 [IRC]: http://libigot.org/pages/chat/
