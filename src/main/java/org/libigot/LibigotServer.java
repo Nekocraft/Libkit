@@ -1,6 +1,9 @@
 package org.libigot;
 
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.libigot.block.LibigotBlock;
 import org.libigot.entity.LibigotPlayer;
 import org.libigot.world.LibigotWorld;
 
@@ -19,6 +22,36 @@ public interface LibigotServer {
      * @return The servers current TPS
      */
     public double getCurrentTPS();
+
+    /**
+     * Gets a block at a specific location.
+     *
+     * @param world The world the block is in.
+     * @param x The X coordinate of the block.
+     * @param y The Y coordinate of the block.
+     * @param z The Z coordinate of the block.
+     * @return The block.
+     */
+    public LibigotBlock getBlockAt(LibigotWorld world, int x, int y, int z);
+
+    /**
+     * Gets a block at a specific location.
+     *
+     * @param world The world the block is in.
+     * @param x The X coordinate of the block.
+     * @param y The Y coordinate of the block.
+     * @param z The Z coordinate of the block.
+     * @return The block.
+     */
+    public LibigotBlock getBlockAt(World world, int x, int y, int z);
+
+    /**
+     * Transforms a Bukkit block into a Libigot block.
+     *
+     * @param block The Bukkit block.
+     * @return The Libigot block.
+     */
+    public LibigotBlock toLibigot(Block block);
 
     /**
      * Gets a LibigotPlayer from their exact name
@@ -60,6 +93,14 @@ public interface LibigotServer {
     public LibigotWorld getWorld(String name);
 
     /**
+     * Transforms a Bukkit world into a Libigot world.
+     *
+     * @param world The Bukkit world.
+     * @return The Libigot world.
+     */
+    public LibigotWorld toLibigot(World world);
+
+    /**
      * Get if the server is in debug mode
      *
      * @return true if the server is in debug mode, false otherwise
@@ -72,6 +113,13 @@ public interface LibigotServer {
      * @param debug true to set the server is in debug mode, false to disable it
      */
     public void setDebug(boolean debug);
+
+    /**
+     * Gets the number of threads netty uses
+     *
+     * @return the number of netty threads
+     */
+    public int getNettyThreads();
 
     /**
      * Gets the minecraft servers current tick.
