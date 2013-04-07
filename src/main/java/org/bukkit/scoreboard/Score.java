@@ -41,6 +41,27 @@ public interface Score {
      */
     void setScore(int score) throws IllegalStateException;
 
+    // Libigot start
+    /**
+     * Checks if this score is set.
+     * 
+     * @return true if this score is set.
+     * @throws IllegalStateException if the associated objective has been
+     *     unregistered
+     */
+    boolean isSet() throws IllegalStateException;
+
+    /**
+     * Resets this score.
+     * <p>
+     * After calling this, Score.isSet() will return false.
+     * 
+     * @throws IllegalStateException if the associated objective has been
+     *     unregistered
+     */
+    void reset() throws IllegalStateException;
+    // Libigot end
+
     /**
      * Gets the scoreboard for the associated objective.
      *
