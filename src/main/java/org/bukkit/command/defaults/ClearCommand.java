@@ -27,7 +27,7 @@ public class ClearCommand extends VanillaCommand {
 
     public ClearCommand() {
         super("clear");
-        this.description = "Clears the player's inventory. Can specify item and data filters too.";
+        this.description = "清空玩家的背包,可以使用特定的物品ID和过滤器";
         this.usageMessage = "/clear <player> [item] [data]";
         this.setPermission("bukkit.command.clear");
     }
@@ -60,8 +60,9 @@ public class ClearCommand extends VanillaCommand {
 
             int data = args.length >= 3 ? getInteger(sender, args[2], 0) : -1;
             int count = player.getInventory().clear(id, data);
-
-            Command.broadcastCommandMessage(sender, "Cleared the inventory of " + player.getDisplayName() + ", removing " + count + " items");
+            if (false){
+                Command.broadcastCommandMessage(sender, "Cleared the inventory of " + player.getDisplayName() + ", removing " + count + " items");
+            }
         } else if (args.length == 0) {
             sender.sendMessage(ChatColor.RED + "Please provide a player!");
         } else {
