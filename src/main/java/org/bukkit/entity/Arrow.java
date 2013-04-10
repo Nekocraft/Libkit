@@ -19,4 +19,29 @@ public interface Arrow extends Projectile {
      * @param damage
      */
     public void setDamage(double damage);
+
+    /**
+     * Gets the knockback strength of this Arrow which is by default added by the enchantment punch.
+     * The knockback effect by impact on a entity.
+     * @return knockbackStrength
+     */
+    public int getKnockbackStrength();
+
+    /**
+     * Sets the knockback which will be given to a entity on impact.
+     * @param strength
+     */
+    public void setKnockbackStrength(int strength);
+
+    /**
+     * Gets if the bow was complete charged when shooting this Arrow. (Particle effect.)
+     * @return critical
+     */
+    public boolean isCritical();
+
+    /**
+     * Sets if the arrow has a critical effect on it. (Particle effect.)
+     * @param critical
+     */
+    public void setCritical(boolean critical);
 }
