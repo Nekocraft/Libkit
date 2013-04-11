@@ -21,7 +21,7 @@ public class LibigotLocation implements Serializable {
     private final float yaw, pitch;
 
     /**
-     * Create a SurgeLocation from a Bukkit Location
+     * Create a LibigotLocation from a Bukkit Location
      * 
      * @param location The Bukkit Location
      */
@@ -30,7 +30,7 @@ public class LibigotLocation implements Serializable {
     }
 
     /**
-     * Create a SurgeLocation from a Bukkit Block
+     * Create a LibigotLocation from a Bukkit Block
      * 
      * @param block The Bukkit Block
      */
@@ -39,7 +39,7 @@ public class LibigotLocation implements Serializable {
     }
 
     /**
-     * Create a SurgeLocation from a Libigot Block
+     * Create a LibigotLocation from a Libigot Block
      * 
      * @param block The Libigot Block
      */
@@ -48,7 +48,7 @@ public class LibigotLocation implements Serializable {
     }
 
     /**
-     * Create a SurgeLocation from a World and coordinates
+     * Create a LibigotLocation from a World and coordinates
      * 
      * @param world The World
      * @param x The X coordinate
@@ -60,7 +60,7 @@ public class LibigotLocation implements Serializable {
     }
 
     /**
-     * Create a SurgeLocation from a World name and coordinates
+     * Create a LibigotLocation from a World name and coordinates
      * 
      * @param world The World
      * @param x The X coordinate
@@ -72,7 +72,7 @@ public class LibigotLocation implements Serializable {
     }
 
     /**
-     * Create a SurgeLocation from a World, coordinates, yaw and pitch
+     * Create a LibigotLocation from a World, coordinates, yaw and pitch
      * 
      * @param world The World
      * @param x The X coordinate
@@ -86,7 +86,7 @@ public class LibigotLocation implements Serializable {
     }
 
     /**
-     * Create a SurgeLocation from a World name, coordinates, yaw and pitch
+     * Create a LibigotLocation from a World name, coordinates, yaw and pitch
      * 
      * @param world The World
      * @param x The X coordinate
