@@ -34,7 +34,7 @@ public class BlockStorage implements Serializable {
     }
 
     /**
-     * Create a BlockStorage from a SurgeLocation, a block ID and block data
+     * Create a BlockStorage from a LibigotLocation, a block ID and block data
      * @param loc The Location
      * @param id The block ID
      * @param data The block data
@@ -59,9 +59,9 @@ public class BlockStorage implements Serializable {
     }
 
     /**
-     * Get a SurgeLocation
+     * Get a LibigotLocation
      * 
-     * @return The SurgeLocation
+     * @return The LibigotLocation
      */
     public LibigotLocation getLocation() {
         return this.loc;
