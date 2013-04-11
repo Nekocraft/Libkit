@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.libigot.Libigot;
+import org.libigot.block.LibigotBlock;
 import org.libigot.world.LibigotWorld;
 
 /**
@@ -31,10 +32,19 @@ public class LibigotLocation implements Serializable {
     /**
      * Create a SurgeLocation from a Bukkit Block
      * 
-     * @param location The Bukkit Block
+     * @param block The Bukkit Block
      */
     public LibigotLocation(Block block) {
         this(block.getWorld(), block.getX(), block.getY(), block.getZ());
+    }
+
+    /**
+     * Create a SurgeLocation from a Libigot Block
+     * 
+     * @param block The Libigot Block
+     */
+    public LibigotLocation(LibigotBlock block) {
+        this(block.getBlock());
     }
 
     /**
@@ -175,12 +185,12 @@ public class LibigotLocation implements Serializable {
      * 
      * @return The Block or null if the world is unloaded
      */
-    public Block getBlock() {
+    public LibigotBlock getBlock() {
         World world = Bukkit.getWorld(this.world);
         if(world == null) {
             return null;
         }
-        return world.getBlockAt((int)this.x, (int)this.y, (int)this.z);
+        return Libigot.getServer().getBlockAt(world, (int)this.x, (int)this.y, (int)this.z);
     }
 
     @Override
