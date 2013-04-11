@@ -3,13 +3,23 @@ package org.libigot.world;
 import org.bukkit.World;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
+import org.libigot.block.LibigotBlock;
 import org.libigot.world.LibigotEffect;
 
 /**
  * Represents a world in Libigot.
  */
 public interface LibigotWorld  {
-    
+
+    /**
+     * Gets a block from a specific location.
+     * @param x The X coordinate in the world.
+     * @param y The Y coordinate in the world.
+     * @param z The Z coordinate in the world.
+     * @return The block.
+     */
+    public LibigotBlock getBlock(int x, int y, int z);
+
     /**
      * Sets the render distance for this server.
      *
