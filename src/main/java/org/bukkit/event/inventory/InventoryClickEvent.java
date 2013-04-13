@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 public class InventoryClickEvent extends InventoryEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private SlotType slot_type;
-    private boolean shiftClick; // Libigot
+    private boolean shiftClick, doubleClick; // Libigot
     private MouseButton button; // Libigot
     private Result result;
     private int whichSlot;
