@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 public class InventoryClickEvent extends InventoryEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private SlotType slot_type;
-    private boolean shiftClick; // Libigot
+    private boolean shiftClick, doubleClick; // Libigot
     private MouseButton button; // Libigot
     private Result result;
     private int whichSlot;
@@ -49,6 +49,7 @@ public class InventoryClickEvent extends InventoryEvent implements Cancellable {
         this.slot_type = type;
         this.button = button; // Libigot
         this.shiftClick = shift;
+        this.doubleClick = doubleClick;
         this.result = Result.DEFAULT;
         this.rawSlot = slot;
         this.whichSlot = what.convertSlot(slot);
@@ -105,6 +106,13 @@ public class InventoryClickEvent extends InventoryEvent implements Cancellable {
         return button;
     }
     // Libigot end
+
+    /**
+     * @return True if the click is a double click. If it is a double click it will group up all items from the container of the same type onto the cursor.
+     */
+    public boolean isDoubleClick() {
+        return doubleClick;
+    }
 
     /**
      * Shift can be combined with any click as a modifier. // Libigot

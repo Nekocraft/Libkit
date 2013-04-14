@@ -382,26 +382,16 @@ public class ScoreboardCommand extends VanillaCommand {
                             addedPlayers.add(offlinePlayer.getName());
                         }
                     }
-                    String[] playerArray = addedPlayers.toArray(new String[0]);
-                    StringBuilder builder = new StringBuilder();
-                    for (int x = 0; x < playerArray.length; x++) {
-                        if (x == playerArray.length - 1) {
-                            builder.append(" and ");
-                        } else if (x > 0) {
-                            builder.append(", ");
-                        }
-                        builder.append(playerArray[x]);
-                    }
-                    sender.sendMessage("Added " + addedPlayers.size() + " player(s) to team " + team.getName() + ": " + builder.toString());
+                    sender.sendMessage("Added " + addedPlayers.size() + " player(s) to team " + team.getName() + ": " + stringCollectionToString(addedPlayers));
                 }
             } else if (args[1].equalsIgnoreCase("leave")) {
-                if ((sender instanceof Player) ? args.length < 2 : args.length < 3) {
+                if (!(sender instanceof Player) && args.length < 3) {
                     sender.sendMessage(ChatColor.RED + "/scoreboard teams leave [player...]");
                     return false;
                 }
                 Set<String> left = new HashSet<String>();
                 Set<String> noTeam = new HashSet<String>();
-                if ((sender instanceof Player) && args.length == 3) {
+                if ((sender instanceof Player) && args.length == 2) {
                     Team team = mainScoreboard.getPlayerTeam((Player) sender);
                     if (team != null) {
                         team.removePlayer((Player) sender);
@@ -410,7 +400,7 @@ public class ScoreboardCommand extends VanillaCommand {
                         noTeam.add(sender.getName());
                     }
                 } else {
-                    for (int i = 3; i < args.length; i++) {
+                    for (int i = 2; i < args.length; i++) {
                         String playerName = args[i];
                         OfflinePlayer offlinePlayer;
                         Player player = Bukkit.getPlayerExact(playerName);
