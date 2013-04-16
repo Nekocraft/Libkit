@@ -41,6 +41,15 @@ public class FurnaceSmeltingEvent extends BlockEvent implements Cancellable {
         return cookTime;
     }
     
+    /**
+     * Sets the cooktime for this item
+     * 
+     * @param cookTime Current cook time for the item
+     */
+    public void setCookTime(int cookTime) {
+        this.cookTime = cookTime;
+    }
+    
     public boolean isCancelled() {
         return cancelled;
     }
