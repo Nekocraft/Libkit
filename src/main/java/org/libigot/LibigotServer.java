@@ -115,6 +115,13 @@ public interface LibigotServer {
     public void setDebug(boolean debug);
     
     /**
+     * Gets if the minecraft server uses Netty
+     * 
+     * @return true if the minecraft server uses Netty, false otherwise
+     */
+    public boolean getUseNetty();
+    
+    /**
      * Gets the minecraft servers current tick.
      * 
      * @return the current tick.
