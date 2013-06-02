@@ -18,8 +18,8 @@ public class VersionCommand extends BukkitCommand {
     public VersionCommand(String name) {
         super(name);
 
-        this.description = "Gets the version of this server including any plugins in use";
-        this.usageMessage = "/version [plugin name]";
+        this.description = "获取服务器的版本 或者所使用的插件版本";
+        this.usageMessage = "/version [插件名]";
         this.setPermission("bukkit.command.version");
         this.setAliases(Arrays.asList("ver", "about"));
     }
@@ -29,7 +29,7 @@ public class VersionCommand extends BukkitCommand {
         if (!testPermission(sender)) return true;
 
         if (args.length == 0) {
-            sender.sendMessage("This server is running Libigot version: " + Bukkit.getVersion() + " (Implementing API version: " + Bukkit.getBukkitVersion() + ")");
+            sender.sendMessage("服务器版本: " + Bukkit.getVersion() + " (API版本: " + Bukkit.getBukkitVersion() + ")");
         } else {
             StringBuilder name = new StringBuilder();
 
@@ -58,8 +58,8 @@ public class VersionCommand extends BukkitCommand {
             }
 
             if (!found) {
-                sender.sendMessage("This server is not running any plugin by that name.");
-                sender.sendMessage("Use /plugins to get a list of plugins.");
+                sender.sendMessage("没有这个插件哦.");
+                sender.sendMessage("使用 /plugins 来获取详细插件列表.");
             }
         }
         return true;
@@ -67,21 +67,21 @@ public class VersionCommand extends BukkitCommand {
 
     private void describeToSender(Plugin plugin, CommandSender sender) {
         PluginDescriptionFile desc = plugin.getDescription();
-        sender.sendMessage(ChatColor.GREEN + desc.getName() + ChatColor.WHITE + " version " + ChatColor.GREEN + desc.getVersion());
+        sender.sendMessage(ChatColor.GREEN + desc.getName() + ChatColor.WHITE + " 版本 " + ChatColor.GREEN + desc.getVersion());
 
         if (desc.getDescription() != null) {
             sender.sendMessage(desc.getDescription());
         }
 
         if (desc.getWebsite() != null) {
-            sender.sendMessage("Website: " + ChatColor.GREEN + desc.getWebsite());
+            sender.sendMessage("网站: " + ChatColor.GREEN + desc.getWebsite());
         }
 
         if (!desc.getAuthors().isEmpty()) {
             if (desc.getAuthors().size() == 1) {
-                sender.sendMessage("Author: " + getAuthors(desc));
+                sender.sendMessage("作者: " + getAuthors(desc));
             } else {
-                sender.sendMessage("Authors: " + getAuthors(desc));
+                sender.sendMessage("作者: " + getAuthors(desc));
             }
         }
     }

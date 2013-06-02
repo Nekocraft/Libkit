@@ -18,8 +18,8 @@ public class WeatherCommand extends VanillaCommand {
 
     public WeatherCommand() {
         super("weather");
-        this.description = "Changes the weather";
-        this.usageMessage = "/weather <clear/rain/thunder> [duration in seconds]";
+        this.description = "改变世界的天气";
+        this.usageMessage = "/weather <clear/rain/thunder> [时间]";
         this.setPermission("bukkit.command.weather");
     }
 
@@ -27,7 +27,7 @@ public class WeatherCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length == 0) {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 
@@ -44,15 +44,15 @@ public class WeatherCommand extends VanillaCommand {
         if ("clear".equalsIgnoreCase(args[0])) {
             world.setStorm(false);
             world.setThundering(false);
-            Command.broadcastCommandMessage(sender, "Changed weather to clear for " + (duration / 20) + " seconds.");
+            Command.broadcastCommandMessage(sender, "已将世界的天气设置为晴天 " + (duration / 20) + " 秒喵.");
         } else if ("rain".equalsIgnoreCase(args[0])) {
             world.setStorm(true);
             world.setThundering(false);
-            Command.broadcastCommandMessage(sender, "Changed weather to rainy for " + (duration / 20) + " seconds.");
+            Command.broadcastCommandMessage(sender, "已将世界的天气设置为下雨 " + (duration / 20) + " 秒喵.");
         } else if ("thunder".equalsIgnoreCase(args[0])) {
             world.setStorm(true);
             world.setThundering(true);
-            Command.broadcastCommandMessage(sender, "Changed weather to thundering " + (duration / 20) + " seconds.");
+            Command.broadcastCommandMessage(sender, "已将世界的天气设置为雷雨 " + (duration / 20) + " 秒喵.");
         }
 
         return true;

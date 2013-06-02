@@ -11,7 +11,7 @@ import org.bukkit.CustomTimingsHandler;
 public class ReloadCommand extends BukkitCommand {
     public ReloadCommand(String name) {
         super(name);
-        this.description = "Reloads the server configuration and plugins";
+        this.description = "重新加载服务器设置和插件喵";
         this.usageMessage = "/reload";
         this.setPermission("bukkit.command.reload");
         this.setAliases(Arrays.asList("rl"));
@@ -23,7 +23,7 @@ public class ReloadCommand extends BukkitCommand {
 
         CustomTimingsHandler.reload(); // Spigot
         Bukkit.reload();
-        Command.broadcastCommandMessage(sender, ChatColor.GREEN + "Reload complete.");
+        Command.broadcastCommandMessage(sender, ChatColor.GREEN + "重新加载完成喵.");
 
         return true;
     }

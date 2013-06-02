@@ -16,8 +16,8 @@ public class SpawnpointCommand extends VanillaCommand {
 
     public SpawnpointCommand() {
         super("spawnpoint");
-        this.description = "Sets a player's spawn point";
-        this.usageMessage = "/spawnpoint OR /spawnpoint <player> OR /spawnpoint <player> <x> <y> <z>";
+        this.description = "设置玩家的出生点";
+        this.usageMessage = "/spawnpoint 或 /spawnpoint <玩家名> 或 /spawnpoint <玩家名> <x> <y> <z>";
         this.setPermission("bukkit.command.spawnpoint");
     }
 
@@ -31,13 +31,13 @@ public class SpawnpointCommand extends VanillaCommand {
             if (sender instanceof Player) {
                 player = (Player) sender;
             } else {
-                sender.sendMessage("Please provide a player!");
+                sender.sendMessage("请指定一个玩家喵!");
                 return true;
             }
         } else {
             player = Bukkit.getPlayerExact(args[0]);
             if (player == null) {
-                sender.sendMessage("Can't find player " + args[0]);
+                sender.sendMessage("找不到玩家喵 " + args[0]);
                 return true;
             }
         }
@@ -58,14 +58,14 @@ public class SpawnpointCommand extends VanillaCommand {
                 }
 
                 player.setBedSpawnLocation(new Location(world, x, y, z), true);
-                Command.broadcastCommandMessage(sender, "Set " + player.getDisplayName() + "'s spawnpoint to " + x + ", " + y + ", " + z);
+                Command.broadcastCommandMessage(sender, "已设置玩家 " + player.getDisplayName() + " 的出生点为 " + x + ", " + y + ", " + z);
             }
         } else if (args.length <= 1) {
             Location location = player.getLocation();
             player.setBedSpawnLocation(location, true);
-            Command.broadcastCommandMessage(sender, "Set " + player.getDisplayName() + "'s spawnpoint to " + location.getX() + ", " + location.getY() + ", " + location.getZ());
+            Command.broadcastCommandMessage(sender, "已设置玩家 " + player.getDisplayName() + " 的出生点为 " + location.getX() + ", " + location.getY() + ", " + location.getZ());
         } else {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 

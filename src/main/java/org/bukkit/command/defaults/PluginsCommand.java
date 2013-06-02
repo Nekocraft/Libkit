@@ -10,7 +10,7 @@ import org.bukkit.plugin.Plugin;
 public class PluginsCommand extends BukkitCommand {
     public PluginsCommand(String name) {
         super(name);
-        this.description = "Gets a list of plugins running on the server";
+        this.description = "获取插件列表喵";
         this.usageMessage = "/plugins";
         this.setPermission("bukkit.command.plugins");
         this.setAliases(Arrays.asList("pl"));
@@ -19,8 +19,11 @@ public class PluginsCommand extends BukkitCommand {
     @Override
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
-
-        sender.sendMessage("Plugins " + getPluginList());
+        if(args.length == 1 && args[0].equals("nya")){
+            sender.sendMessage("插件们: " + getPluginList());
+        } else {
+            sender.sendMessage("使用Nekoserver的运行的哦~");
+        }
         return true;
     }
 

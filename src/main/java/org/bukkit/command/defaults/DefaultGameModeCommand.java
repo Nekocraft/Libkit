@@ -17,7 +17,7 @@ public class DefaultGameModeCommand extends VanillaCommand {
 
     public DefaultGameModeCommand() {
         super("defaultgamemode");
-        this.description = "Set the default gamemode";
+        this.description = "设置默认游戏模式";
         this.usageMessage = "/defaultgamemode <mode>";
         this.setPermission("bukkit.command.defaultgamemode");
     }
@@ -26,7 +26,7 @@ public class DefaultGameModeCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length == 0) {
-            sender.sendMessage("Usage: " + usageMessage);
+            sender.sendMessage("用法: " + usageMessage);
             return false;
         }
 
@@ -50,7 +50,7 @@ public class DefaultGameModeCommand extends VanillaCommand {
         }
 
         Bukkit.getServer().setDefaultGameMode(mode);
-        Command.broadcastCommandMessage(sender, "Default game mode set to " + mode.toString().toLowerCase());
+        Command.broadcastCommandMessage(sender, "喵 默认的游戏模式设置为 " + mode.toString().toLowerCase());
 
         return true;
     }

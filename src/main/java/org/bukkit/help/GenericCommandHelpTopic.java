@@ -39,21 +39,21 @@ public class GenericCommandHelpTopic extends HelpTopic {
         StringBuffer sb = new StringBuffer();
 
         sb.append(ChatColor.GOLD);
-        sb.append("Description: ");
+        sb.append("内容: ");
         sb.append(ChatColor.WHITE);
         sb.append(command.getDescription());
 
         sb.append("\n");
 
         sb.append(ChatColor.GOLD);
-        sb.append("Usage: ");
+        sb.append("用法: ");
         sb.append(ChatColor.WHITE);
         sb.append(command.getUsage().replace("<command>", name.substring(1)));
 
         if (command.getAliases().size() > 0) {
             sb.append("\n");
             sb.append(ChatColor.GOLD);
-            sb.append("Aliases: ");
+            sb.append("同义词: ");
             sb.append(ChatColor.WHITE);
             sb.append(ChatColor.WHITE + StringUtils.join(command.getAliases(), ", "));
         }

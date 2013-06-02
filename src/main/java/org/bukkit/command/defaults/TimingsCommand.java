@@ -33,7 +33,7 @@ public class TimingsCommand extends BukkitCommand {
     public static long timingStart =  0; // Spigot
     public TimingsCommand(String name) {
         super(name);
-        this.description = "Records timings for all plugin events";
+        this.description = "记录所有插件处理用时喵";
         this.usageMessage = "/timings <reset|merged|separate|paste|on|off>"; // Spigot
         this.setPermission("bukkit.command.timings");
     }
@@ -42,7 +42,7 @@ public class TimingsCommand extends BukkitCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length < 1)  { // Spigot
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
         // Spigot start - this is dynamic now
@@ -52,17 +52,17 @@ public class TimingsCommand extends BukkitCommand {
         }*/
         if ("on".equals(args[0])) {
             ((SimplePluginManager)Bukkit.getServer().getPluginManager()).useTimings(true);
-            sender.sendMessage("Enabled Timings");
+            sender.sendMessage("启用计时");
         } else if ("off".equals(args[0])) {
             ((SimplePluginManager)Bukkit.getServer().getPluginManager()).useTimings(false);
-            sender.sendMessage("Disabled Timings");
+            sender.sendMessage("禁用计时");
         }
         // Spigot end
 
         boolean separate = "separate".equals(args[0]);
         boolean paste = "paste".equals(args[0]); // Spigot
         if ("on".equals(args[0]) || "reset".equals(args[0])) { // Spigot
-            if (!"on".equals(args[0]) && !Bukkit.getServer().getPluginManager().useTimings()) {sender.sendMessage("Please enable timings by typing /timings on"); return true; } // Spigot
+            if (!"on".equals(args[0]) && !Bukkit.getServer().getPluginManager().useTimings()) {sender.sendMessage("使用 /timings on 来启用计时喵"); return true; } // Spigot
             for (HandlerList handlerList : HandlerList.getHandlerLists()) {
                 for (RegisteredListener listener : handlerList.getRegisteredListeners()) {
                     if (listener instanceof TimedRegisteredListener) {
@@ -74,7 +74,7 @@ public class TimingsCommand extends BukkitCommand {
             timingStart = System.nanoTime(); // Spigot
             sender.sendMessage("Timings reset");
         } else if ("merged".equals(args[0]) || separate || paste) { // Spigot
-            if (!Bukkit.getServer().getPluginManager().useTimings()) {sender.sendMessage("Please enable timings by typing /timings on"); return true; } // Spigot
+            if (!Bukkit.getServer().getPluginManager().useTimings()) {sender.sendMessage("使用 /timings on 来启用计时喵"); return true; } // Spigot
             long sampleTime = System.nanoTime() - timingStart; // Spigot
             int index = 0;
             int pluginIdx = 0;
@@ -123,11 +123,11 @@ public class TimingsCommand extends BukkitCommand {
                 if (paste) {
                     new PasteThread(sender, bout).start();
                 } else {
-                    sender.sendMessage("Timings written to " + timings.getPath());
-                    sender.sendMessage("Paste contents of file into form at http://aikar.co/timings.php to read results.");
+                    sender.sendMessage("即时信息已经保存到 " + timings.getPath());
+                    sender.sendMessage("将文件的内容粘贴到 http://aikar.co/timings.php 读取结果。");
                 }
                 // Spigot end
-                if (separate) sender.sendMessage("Names written to " + names.getPath());
+                if (separate) sender.sendMessage("名字已经保存到" + names.getPath());
             } catch (IOException e) {
             } finally {
                 if (fileTimings != null) {
@@ -181,10 +181,10 @@ public class TimingsCommand extends BukkitCommand {
 
                 String location = con.getHeaderField("Location");
                 String pasteID = location.substring("http://paste.ubuntu.com/".length(), location.length() - 1);
-                sender.sendMessage(ChatColor.GREEN + "Your timings have been pasted to " + location);
-                sender.sendMessage(ChatColor.GREEN + "You can view the results at http://aikar.co/timings.php?url=" + pasteID);
+                sender.sendMessage(ChatColor.GREEN + "计时结果已经保存到 " + location);
+                sender.sendMessage(ChatColor.GREEN + "你可以在 http://aikar.co/timings.php?url=" + pasteID + " 查看结果喵");
             } catch (IOException ex) {
-                sender.sendMessage(ChatColor.RED + "Error pasting timings, check your console for more information");
+                sender.sendMessage(ChatColor.RED + "计时出错 检查控制台获取更多信息喵");
                 Bukkit.getServer().getLogger().log(Level.WARNING, "Could not paste timings", ex);
             }
         }

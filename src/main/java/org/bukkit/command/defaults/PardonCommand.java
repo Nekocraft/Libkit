@@ -16,8 +16,8 @@ import com.google.common.collect.ImmutableList;
 public class PardonCommand extends VanillaCommand {
     public PardonCommand() {
         super("pardon");
-        this.description = "Allows the specified player to use this server";
-        this.usageMessage = "/pardon <player>";
+        this.description = "重新允许玩家使用服务器喵";
+        this.usageMessage = "/pardon <玩家名>";
         this.setPermission("bukkit.command.unban.player");
     }
 
@@ -25,12 +25,12 @@ public class PardonCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length != 1)  {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 
         Bukkit.getOfflinePlayer(args[0]).setBanned(false);
-        Command.broadcastCommandMessage(sender, "Pardoned " + args[0]);
+        Command.broadcastCommandMessage(sender, "已经解除 " + args[0] + "的封禁了哦");
         return true;
     }
 

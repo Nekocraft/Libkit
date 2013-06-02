@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 public class DeopCommand extends VanillaCommand {
     public DeopCommand() {
         super("deop");
-        this.description = "Takes the specified player's operator status";
+        this.description = "取消一个玩家的OP权限喵";
         this.usageMessage = "/deop <player>";
         this.setPermission("bukkit.command.op.take");
     }
@@ -26,7 +26,7 @@ public class DeopCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length != 1 || args[0].length() == 0) {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法¨: " + usageMessage);
             return false;
         }
 
@@ -34,10 +34,10 @@ public class DeopCommand extends VanillaCommand {
         player.setOp(false);
 
         if (player instanceof Player) {
-            ((Player) player).sendMessage(ChatColor.YELLOW + "You are no longer op!");
+            ((Player) player).sendMessage(ChatColor.YELLOW + "你不再是OP了喵!");
         }
 
-        Command.broadcastCommandMessage(sender, "De-opped " + args[0]);
+        Command.broadcastCommandMessage(sender, "取消了 " + args[0] + "的OP喵!");
         return true;
     }
 

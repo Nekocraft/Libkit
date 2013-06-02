@@ -19,8 +19,8 @@ public class GameModeCommand extends VanillaCommand {
 
     public GameModeCommand() {
         super("gamemode");
-        this.description = "Changes the player to a specific game mode";
-        this.usageMessage = "/gamemode <mode> [player]";
+        this.description = "改变玩家的游戏模式喵";
+        this.usageMessage = "/gamemode <模式> [玩家名]";
         this.setPermission("bukkit.command.gamemode");
     }
 
@@ -28,7 +28,7 @@ public class GameModeCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length == 0) {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 
@@ -64,19 +64,19 @@ public class GameModeCommand extends VanillaCommand {
                 player.setGameMode(mode);
 
                 if (mode != player.getGameMode()) {
-                    sender.sendMessage("Game mode change for " + player.getName() + " failed!");
+                    sender.sendMessage("设置 " + player.getName() + " 的游戏模式失败了!");
                 } else {
                     if (player == sender) {
-                        Command.broadcastCommandMessage(sender, "Set own game mode to " + mode.toString() + " mode");
+                        Command.broadcastCommandMessage(sender, "将自己的游戏模式设置为 " + mode.toString() + " 模式了喵");
                     } else {
-                        Command.broadcastCommandMessage(sender, "Set " + player.getName() + "'s game mode to " + mode.toString() + " mode");
+                        Command.broadcastCommandMessage(sender, "将 " + player.getName() + " 的游戏模式设置为 " + mode.toString() + " 模式了喵");
                     }
                 }
             } else {
-                sender.sendMessage(player.getName() + " already has game mode " + mode.getValue());
+                sender.sendMessage(player.getName() + " 已经是 " + mode.getValue() + "模式了喵");
             }
         } else {
-            sender.sendMessage("Can't find player " + playerArg);
+            sender.sendMessage("找不到玩家 " + playerArg + "诶");
         }
 
         return true;

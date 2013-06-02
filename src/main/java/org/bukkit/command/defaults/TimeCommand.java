@@ -19,7 +19,7 @@ public class TimeCommand extends VanillaCommand {
 
     public TimeCommand() {
         super("time");
-        this.description = "Changes the time on each world";
+        this.description = "改变每个世界的时间喵";
         this.usageMessage = "/time set <value>\n/time add <value>";
         this.setPermission("bukkit.command.time.add;bukkit.command.time.set");
     }
@@ -27,7 +27,7 @@ public class TimeCommand extends VanillaCommand {
     @Override
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (args.length < 2) {
-            sender.sendMessage(ChatColor.RED + "Incorrect usage. Correct usage:\n" + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法:\n" + usageMessage);
             return false;
         }
 
@@ -35,7 +35,7 @@ public class TimeCommand extends VanillaCommand {
 
         if (args[0].equals("set")) {
             if (!sender.hasPermission("bukkit.command.time.set")) {
-                sender.sendMessage(ChatColor.RED + "You don't have permission to set the time");
+                sender.sendMessage(ChatColor.RED + "你没有权限设置时间喵");
                 return true;
             }
 
@@ -51,10 +51,10 @@ public class TimeCommand extends VanillaCommand {
                 world.setTime(value);
             }
 
-            Command.broadcastCommandMessage(sender, "Set time to " + value);
+            Command.broadcastCommandMessage(sender, "时间设置为 " + value);
         } else if (args[0].equals("add")) {
             if (!sender.hasPermission("bukkit.command.time.add")) {
-                sender.sendMessage(ChatColor.RED + "You don't have permission to set the time");
+                sender.sendMessage(ChatColor.RED + "你没有权限设置时间喵");
                 return true;
             }
 
@@ -64,9 +64,9 @@ public class TimeCommand extends VanillaCommand {
                 world.setFullTime(world.getFullTime() + value);
             }
 
-            Command.broadcastCommandMessage(sender, "Added " + value + " to time");
+            Command.broadcastCommandMessage(sender, "添加 " + value + " 到时间");
         } else {
-            sender.sendMessage("Unknown method. Usage: " + usageMessage);
+            sender.sendMessage("位置的方法 用法: " + usageMessage);
         }
 
         return true;

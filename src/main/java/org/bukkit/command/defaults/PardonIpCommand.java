@@ -15,8 +15,8 @@ import com.google.common.collect.ImmutableList;
 public class PardonIpCommand extends VanillaCommand {
     public PardonIpCommand() {
         super("pardon-ip");
-        this.description = "Allows the specified IP address to use this server";
-        this.usageMessage = "/pardon-ip <address>";
+        this.description = "重新允许特定的IP使用服务器喵";
+        this.usageMessage = "/pardon-ip <IP地址>";
         this.setPermission("bukkit.command.unban.ip");
     }
 
@@ -24,15 +24,15 @@ public class PardonIpCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length != 1)  {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 
         if (BanIpCommand.ipValidity.matcher(args[0]).matches()) {
             Bukkit.unbanIP(args[0]);
-            Command.broadcastCommandMessage(sender, "Pardoned ip " + args[0]);
+            Command.broadcastCommandMessage(sender, "IP " + args[0] + "已经解除封禁了喵");
         } else {
-            sender.sendMessage("Invalid ip");
+            sender.sendMessage("呀 错误的IP");
         }
 
         return true;

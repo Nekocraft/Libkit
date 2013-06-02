@@ -13,7 +13,7 @@ import com.google.common.collect.ImmutableList;
 public class SaveOffCommand extends VanillaCommand {
     public SaveOffCommand() {
         super("save-off");
-        this.description = "Disables server autosaving";
+        this.description = "关闭地图保存喵";
         this.usageMessage = "/save-off";
         this.setPermission("bukkit.command.save.disable");
     }
@@ -26,7 +26,7 @@ public class SaveOffCommand extends VanillaCommand {
             world.setAutoSave(false);
         }
 
-        Command.broadcastCommandMessage(sender, "Disabled level saving..");
+        Command.broadcastCommandMessage(sender, "已经不再保存地图了..");
         return true;
     }
 

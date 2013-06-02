@@ -15,7 +15,7 @@ import com.google.common.collect.ImmutableList;
 public class ToggleDownfallCommand extends VanillaCommand {
     public ToggleDownfallCommand() {
         super("toggledownfall");
-        this.description = "Toggles rain on/off on a given world";
+        this.description = "切换指定世界的天气是否下雨";
         this.usageMessage = "/toggledownfall";
         this.setPermission("bukkit.command.toggledownfall");
     }
@@ -30,7 +30,7 @@ public class ToggleDownfallCommand extends VanillaCommand {
             world = Bukkit.getWorld(args[0]);
 
             if (world == null) {
-                sender.sendMessage(ChatColor.RED + "No world exists with the name '" + args[0] + "'");
+                sender.sendMessage(ChatColor.RED + "没有叫这个名字的世界喵: '" + args[0] + "'");
                 return true;
             }
         } else if (sender instanceof Player) {
@@ -39,7 +39,7 @@ public class ToggleDownfallCommand extends VanillaCommand {
             world = Bukkit.getWorlds().get(0);
         }
 
-        Command.broadcastCommandMessage(sender, "Toggling downfall " + (world.hasStorm() ? "off" : "on") + " for world '" + world.getName() + "'");
+        Command.broadcastCommandMessage(sender, "切换 " + (world.hasStorm() ? "晴天" : "下雨") + " 到 '" + world.getName() + "'");
         world.setStorm(!world.hasStorm());
 
         return true;

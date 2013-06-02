@@ -15,8 +15,8 @@ public class EffectCommand extends VanillaCommand {
 
     public EffectCommand() {
         super("effect");
-        this.description = "Adds/Removes effects on players";
-        this.usageMessage = "/effect <player> <effect> [seconds] [amplifier]";
+        this.description = "给玩家增加药水效果喵";
+        this.usageMessage = "/effect <玩家名> <效果名> [持续秒数] [等级]";
         this.setPermission("bukkit.command.effect");
     }
 
@@ -46,7 +46,7 @@ public class EffectCommand extends VanillaCommand {
         final Player player = sender.getServer().getPlayer(args[0]);
 
         if (player == null) {
-            sender.sendMessage(ChatColor.RED + String.format("Player, %s, not found", args[0]));
+            sender.sendMessage(ChatColor.RED + String.format("玩家 %s 并~ 不~ 存~ 在~", args[0]));
             return true;
         }
 
@@ -57,7 +57,7 @@ public class EffectCommand extends VanillaCommand {
         }
 
         if (effect == null) {
-            sender.sendMessage(ChatColor.RED + String.format("Effect, %s, not found", args[1]));
+            sender.sendMessage(ChatColor.RED + String.format("效果 %s 并~ 不~ 存~ 在~", args[1]));
             return true;
         }
 
@@ -82,17 +82,17 @@ public class EffectCommand extends VanillaCommand {
 
         if (duration_temp == 0) {
             if (!player.hasPotionEffect(effect)) {
-                sender.sendMessage(String.format("Couldn't take %s from %s as they do not have the effect", effect.getName(), args[0]));
+                sender.sendMessage(String.format("不能取消对 %s 的效果 %s 他还没有这个效果呢", args[0], effect.getName()));
                 return true;
             }
 
             player.removePotionEffect(effect);
-            broadcastCommandMessage(sender, String.format("Took %s from %s", effect.getName(), args[0]));
+            broadcastCommandMessage(sender, String.format("取消了 %s 的 %s 效果", args[0], effect.getName()));
         } else {
             final PotionEffect applyEffect = new PotionEffect(effect, duration, amplification);
 
             player.addPotionEffect(applyEffect, true);
-            broadcastCommandMessage(sender, String.format("Given %s (ID %d) * %d to %s for %d seconds", effect.getName(), effect.getId(), amplification, args[0], duration));
+            broadcastCommandMessage(sender, String.format("设置 %s (ID %d) 特效 %d 给 %s 持续 %d 秒", effect.getName(), effect.getId(), amplification, args[0], duration));
         }
 
         return true;

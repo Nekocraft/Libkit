@@ -26,8 +26,8 @@ import com.google.common.collect.ImmutableList;
 public class HelpCommand extends VanillaCommand {
     public HelpCommand() {
         super("help");
-        this.description = "Shows the help menu";
-        this.usageMessage = "/help <pageNumber>\n/help <topic>\n/help <topic> <pageNumber>";
+        this.description = "显示帮助信息喵";
+        this.usageMessage = "/help <页码>\n/help <分类>\n/help <分类> <页码>";
         this.setPermission("bukkit.command.help");
     }
 
@@ -78,7 +78,7 @@ public class HelpCommand extends VanillaCommand {
         }
 
         if (topic == null || !topic.canSee(sender)) {
-            sender.sendMessage(ChatColor.RED + "No help for " + command);
+            sender.sendMessage(ChatColor.RED + "没有 " + command + "相关的帮助喵");
             return true;
         }
 

@@ -13,8 +13,8 @@ import com.google.common.collect.ImmutableList;
 public class SayCommand extends VanillaCommand {
     public SayCommand() {
         super("say");
-        this.description = "Broadcasts the given message as the console";
-        this.usageMessage = "/say <message>";
+        this.description = "使用控制台发送消息喵";
+        this.usageMessage = "/say <消息>";
         this.setPermission("bukkit.command.say");
     }
 
@@ -22,7 +22,7 @@ public class SayCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length == 0)  {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 
@@ -39,7 +39,7 @@ public class SayCommand extends VanillaCommand {
             Bukkit.getLogger().info("[" + sender.getName() + "] " + message);
         }
 
-        Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[Server] " + message);
+        Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[系统] " + message);
 
         return true;
     }

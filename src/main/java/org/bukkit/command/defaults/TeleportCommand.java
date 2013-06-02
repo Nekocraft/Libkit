@@ -17,8 +17,8 @@ public class TeleportCommand extends VanillaCommand {
 
     public TeleportCommand() {
         super("tp");
-        this.description = "Teleports the given player (or yourself) to another player or coordinates";
-        this.usageMessage = "/tp [player] <target> and/or <x> <y> <z>";
+        this.description = "传送指定玩家 (or yourself) to another player or coordinates";
+        this.usageMessage = "/tp [玩家名] <目标玩家名> and/or <x> <y> <z>";
         this.setPermission("bukkit.command.teleport");
     }
 
@@ -26,7 +26,7 @@ public class TeleportCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length < 1 || args.length > 4) {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法¨: " + usageMessage);
             return false;
         }
 
@@ -36,7 +36,7 @@ public class TeleportCommand extends VanillaCommand {
             if (sender instanceof Player) {
                 player = (Player) sender;
             } else {
-                sender.sendMessage("Please provide a player!");
+                sender.sendMessage("指定一个有效的玩家喵!");
                 return true;
             }
         } else {
@@ -44,18 +44,18 @@ public class TeleportCommand extends VanillaCommand {
         }
 
         if (player == null) {
-            sender.sendMessage("Player not found: " + args[0]);
+            sender.sendMessage("找不到玩家: " + args[0]);
             return true;
         }
 
         if (args.length < 3) {
             Player target = Bukkit.getPlayerExact(args[args.length - 1]);
             if (target == null) {
-                sender.sendMessage("Can't find player " + args[args.length - 1] + ". No tp.");
+                sender.sendMessage("找不到玩家 " + args[args.length - 1] + ". 没有传送喵.");
                 return true;
             }
             player.teleport(target, TeleportCause.COMMAND);
-            Command.broadcastCommandMessage(sender, "Teleported " + player.getDisplayName() + " to " + target.getDisplayName());
+            Command.broadcastCommandMessage(sender, "传送 " + player.getDisplayName() + " 到 " + target.getDisplayName());
         } else if (player.getWorld() != null) {
             Location playerLocation = player.getLocation();
             double x = getCoordinate(sender, playerLocation.getX(), args[args.length - 3]);
@@ -63,7 +63,7 @@ public class TeleportCommand extends VanillaCommand {
             double z = getCoordinate(sender, playerLocation.getZ(), args[args.length - 1]);
 
             if (x == MIN_COORD_MINUS_ONE || y == MIN_COORD_MINUS_ONE || z == MIN_COORD_MINUS_ONE) {
-                sender.sendMessage("Please provide a valid location!");
+                sender.sendMessage("必需指定一个有效的地点喵!");
                 return true;
             }
 
@@ -72,7 +72,7 @@ public class TeleportCommand extends VanillaCommand {
             playerLocation.setZ(z);
 
             player.teleport(playerLocation);
-            Command.broadcastCommandMessage(sender, String.format("Teleported %s to %.2f, %.2f, %.2f", player.getDisplayName(), x, y, z));
+            Command.broadcastCommandMessage(sender, String.format("传送到 %s 到 %.2f, %.2f, %.2f", player.getDisplayName(), x, y, z));
         }
         return true;
     }

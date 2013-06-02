@@ -16,7 +16,7 @@ public class BanListCommand extends VanillaCommand {
 
     public BanListCommand() {
         super("banlist");
-        this.description = "View all players banned from this server";
+        this.description = "查看服务器上所有被封禁的玩家";
         this.usageMessage = "/banlist [ips|players]";
         this.setPermission("bukkit.command.ban.list");
     }
@@ -32,7 +32,7 @@ public class BanListCommand extends VanillaCommand {
         for (int x = 0; x < banlist.length; x++) {
             if (x != 0) {
                 if (x == banlist.length - 1) {
-                    message.append(" and ");
+                    message.append(" 和 ");
                 } else {
                     message.append(", ");
                 }
@@ -40,7 +40,7 @@ public class BanListCommand extends VanillaCommand {
             message.append(banlist[x].getName());
         }
 
-        sender.sendMessage("There are " + banlist.length + " total banned players:");
+        sender.sendMessage("总共有 " + banlist.length + " 个玩家被封禁了哦:");
         sender.sendMessage(message.toString());
         return true;
     }

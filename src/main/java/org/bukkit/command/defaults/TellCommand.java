@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 public class TellCommand extends VanillaCommand {
     public TellCommand() {
         super("tell");
-        this.description = "Sends a private message to the given player";
-        this.usageMessage = "/tell <player> <message>";
+        this.description = "发送私聊信息给其他玩家喵";
+        this.usageMessage = "/tell <玩家名> <信息>";
         this.setPermission("bukkit.command.tell");
     }
 
@@ -18,7 +18,7 @@ public class TellCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length < 2)  {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 

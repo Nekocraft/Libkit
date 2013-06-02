@@ -63,7 +63,7 @@ public class ScoreboardCommand extends VanillaCommand {
 
     public ScoreboardCommand() {
         super("scoreboard");
-        this.description = "Scoreboard control";
+        this.description = "计分板控制喵";
         this.usageMessage = "/scoreboard";
         this.setPermission("bukkit.command.scoreboard");
     }
@@ -73,7 +73,7 @@ public class ScoreboardCommand extends VanillaCommand {
         if (!testPermission(sender))
             return true;
         if (args.length < 1 || args[0].length() == 0) {
-            sender.sendMessage(ChatColor.RED + "Usage: /scoreboard <objectives|players|teams>");
+            sender.sendMessage(ChatColor.RED + "用法: /scoreboard <objectives|players|teams>");
             return false;
         }
 
@@ -81,18 +81,18 @@ public class ScoreboardCommand extends VanillaCommand {
 
         if (args[0].equalsIgnoreCase("objectives")) {
             if (args.length == 1) {
-                sender.sendMessage(ChatColor.RED + "Usage: /scoreboard objectives <list|add|remove|setdisplay>");
+                sender.sendMessage(ChatColor.RED + "用法: /scoreboard objectives <list|add|remove|setdisplay>");
                 return false;
             }
             if (args[1].equalsIgnoreCase("list")) {
                 Set<Objective> objectives = mainScoreboard.getObjectives();
                 if (objectives.isEmpty()) {
-                    sender.sendMessage(ChatColor.RED + "There are no objectives on the scoreboard");
+                    sender.sendMessage(ChatColor.RED + "计分板上没有对象啊喵");
                     return false;
                 }
-                sender.sendMessage(ChatColor.DARK_GREEN + "Showing " + objectives.size() + " objective(s) on scoreboard");
+                sender.sendMessage(ChatColor.DARK_GREEN + "显示计分板上的 " + objectives.size() + " 个对象中..");
                 for (Objective objective : objectives) {
-                    sender.sendMessage("- " + objective.getName() + ": displays as '" + objective.getDisplayName() + "' and is type '" + objective.getCriteria() + "'");
+                    sender.sendMessage("- " + objective.getName() + ": 显示为 '" + objective.getDisplayName() + "' 类型为 '" + objective.getCriteria() + "'");
                 }
             } else if (args[1].equalsIgnoreCase("add")) {
                 if (args.length < 4) {
@@ -103,17 +103,17 @@ public class ScoreboardCommand extends VanillaCommand {
                 String criteria = args[3];
 
                 if (criteria == null) {
-                    sender.sendMessage(ChatColor.RED + "Invalid objective criteria type. Valid types are: " + stringCollectionToString(OBJECTIVES_CRITERIA));
+                    sender.sendMessage(ChatColor.RED + "无效的对象判据类型喵 可以使用的有: " + stringCollectionToString(OBJECTIVES_CRITERIA));
                 } else if (name.length() > 16) {
-                    sender.sendMessage(ChatColor.RED + "The name '" + name + "' is too long for an objective, it can be at most 16 characters long");
+                    sender.sendMessage(ChatColor.RED + "对象的名字 '" + name + "' 太长了喵 最长只能使用16个字符哦");
                 } else if (mainScoreboard.getObjective(name) != null) {
-                    sender.sendMessage(ChatColor.RED + "An objective with the name '" + name + "' already exists");
+                    sender.sendMessage(ChatColor.RED + "一个名为 '" + name + "' 的对象已经存在了喵");
                 } else {
                     String displayName = null;
                     if (args.length > 4) {
                         displayName = StringUtils.join(ArrayUtils.subarray(args, 4, args.length), ' ');
                         if (displayName.length() > 32) {
-                            sender.sendMessage(ChatColor.RED + "The name '" + displayName + "' is too long for an objective, it can be at most 32 characters long");
+                            sender.sendMessage(ChatColor.RED + "对象的显示名字 '" + displayName + "' 太长了喵 最长只能使用16个字符哦");
                             return false;
                         }
                     }
@@ -121,7 +121,7 @@ public class ScoreboardCommand extends VanillaCommand {
                     if (displayName != null && displayName.length() > 0) {
                         objective.setDisplayName(displayName);
                     }
-                    sender.sendMessage("Added new objective '" + name + "' successfully");
+                    sender.sendMessage("添加新的对象 '" + name + "' 成功了喵");
                 }
             } else if (args[1].equalsIgnoreCase("remove")) {
                 if (args.length != 3) {
@@ -131,10 +131,10 @@ public class ScoreboardCommand extends VanillaCommand {
                 String name = args[2];
                 Objective objective = mainScoreboard.getObjective(name);
                 if (objective == null) {
-                    sender.sendMessage(ChatColor.RED + "No objective was found by the name '" + name + "'");
+                    sender.sendMessage(ChatColor.RED + "找不到叫做 '" + name + "' 的对象啊喵");
                 } else {
                     objective.unregister();
-                    sender.sendMessage("Removed objective '" + name + "' successfully");
+                    sender.sendMessage("成功删除了 '" + name + "' 对象喵");
                 }
             } else if (args[1].equalsIgnoreCase("setdisplay")) {
                 if (args.length != 3 && args.length != 4) {
@@ -144,24 +144,24 @@ public class ScoreboardCommand extends VanillaCommand {
                 String slotName = args[2];
                 DisplaySlot slot = OBJECTIVES_DISPLAYSLOT.get(slotName);
                 if (slot == null) {
-                    sender.sendMessage(ChatColor.RED + "No such display slot '" + slotName + "'");
+                    sender.sendMessage(ChatColor.RED + "没有叫做 '" + slotName + "' 的显示形式啊喵");
                 } else {
                     if (args.length == 4) {
                         String objectiveName = args[3];
                         Objective objective = mainScoreboard.getObjective(objectiveName);
                         if (objective == null) {
-                            sender.sendMessage(ChatColor.RED + "No objective was found by the name '" + objectiveName + "'");
+                            sender.sendMessage(ChatColor.RED + "没有对象叫做 '" + objectiveName + "' 的说");
                             return false;
                         }
 
                         objective.setDisplaySlot(slot);
-                        sender.sendMessage("Set the display objective in slot '" + slotName + "' to '" + objective.getName() + "'");
+                        sender.sendMessage("已设置对象 '" + objective.getName() + "' 的显示方式为 '" + slotName);
                     } else {
                         Objective objective = mainScoreboard.getObjective(slot);
                         if (objective != null) {
                             objective.setDisplaySlot(null);
                         }
-                        sender.sendMessage("Cleared objective display slot '" + slotName + "'");
+                        sender.sendMessage("已清除显示方式为 '" + slotName + "' 的对象喵");
                     }
                 }
             }
@@ -184,10 +184,10 @@ public class ScoreboardCommand extends VanillaCommand {
                 String objectiveName = args[3];
                 Objective objective = mainScoreboard.getObjective(objectiveName);
                 if (objective == null) {
-                    sender.sendMessage(ChatColor.RED + "No objective was found by the name '" + objectiveName + "'");
+                    sender.sendMessage(ChatColor.RED + "没有对象叫做 '" + objectiveName + "' 的说");
                     return false;
                 } else if (!objective.isModifiable()) {
-                    sender.sendMessage(ChatColor.RED + "The objective '" + objectiveName + "' is read-only and cannot be set");
+                    sender.sendMessage(ChatColor.RED + "对象 '" + objectiveName + "' 不可写喵");
                     return false;
                 }
 
@@ -196,17 +196,17 @@ public class ScoreboardCommand extends VanillaCommand {
                 try {
                     value = Integer.parseInt(valueString);
                 } catch (NumberFormatException e) {
-                    sender.sendMessage(ChatColor.RED + "'" + valueString + "' is not a valid number");
+                    sender.sendMessage(ChatColor.RED + "'" + valueString + "' 不是一个数字喵");
                     return false;
                 }
                 if (value < 1 && !args[1].equalsIgnoreCase("set")) {
-                    sender.sendMessage(ChatColor.RED + "The number you have entered (" + value + ") is too small, it must be at least 1");
+                    sender.sendMessage(ChatColor.RED + "输入的数字 (" + value + ") 太小了, 最小是 1 喵");
                     return false;
                 }
 
                 String playerName = args[2];
                 if (playerName.length() > 16) {
-                    sender.sendMessage(ChatColor.RED + "'" + playerName + "' is too long for a player name");
+                    sender.sendMessage(ChatColor.RED + "'" + playerName + "' 玩家名太长了喵");
                     return false;
                 }
                 Score score = objective.getScore(Bukkit.getOfflinePlayer(playerName));
@@ -219,7 +219,7 @@ public class ScoreboardCommand extends VanillaCommand {
                     newScore = score.getScore() - value;
                 }
                 score.setScore(newScore);
-                sender.sendMessage("Set score of " + objectiveName + " for player " + playerName + " to " + newScore);
+                sender.sendMessage("设置 " + objectiveName + " 对象分数给 " + playerName + " 到 " + newScore);
             } else if (args[1].equalsIgnoreCase("reset")) {
                 if (args.length != 3) {
                     sender.sendMessage(ChatColor.RED + "/scoreboard players reset <player>");
@@ -227,11 +227,11 @@ public class ScoreboardCommand extends VanillaCommand {
                 }
                 String playerName = args[2];
                 if (playerName.length() > 16) {
-                    sender.sendMessage(ChatColor.RED + "'" + playerName + "' is too long for a player name");
+                    sender.sendMessage(ChatColor.RED + "'" + playerName + "' 玩家名太长了喵");
                     return false;
                 }
                 mainScoreboard.resetScores(Bukkit.getOfflinePlayer(playerName));
-                sender.sendMessage("Reset all scores of player " + playerName);
+                sender.sendMessage("重置 " + playerName + " 的所有分数");
             } else if (args[1].equalsIgnoreCase("list")) {
                 if (args.length > 3) {
                     sender.sendMessage(ChatColor.RED + "/scoreboard players list <player>");
@@ -240,22 +240,22 @@ public class ScoreboardCommand extends VanillaCommand {
                 if (args.length == 2) {
                     Set<OfflinePlayer> players = mainScoreboard.getPlayers();
                     if (players.isEmpty()) {
-                        sender.sendMessage(ChatColor.RED + "There are no tracked players on the scoreboard");
+                        sender.sendMessage(ChatColor.RED + "计分板上没有跟踪的玩家哦");
                     } else {
-                        sender.sendMessage(ChatColor.DARK_GREEN + "Showing " + players.size() + " tracked players on the scoreboard");
+                        sender.sendMessage(ChatColor.DARK_GREEN + "在计分板上查看 " + players.size() + " 个跟踪的玩家");
                         sender.sendMessage(offlinePlayerSetToString(players));
                     }
                 } else {
                     String playerName = args[2];
                     if (playerName.length() > 16) {
-                        sender.sendMessage(ChatColor.RED + "'" + playerName + "' is too long for a player name");
+                        sender.sendMessage(ChatColor.RED + "'" + playerName + "' 玩家名太长了喵");
                         return false;
                     }
                     Set<Score> scores = mainScoreboard.getScores(Bukkit.getOfflinePlayer(playerName));
                     if (scores.isEmpty()) {
-                        sender.sendMessage(ChatColor.RED + "Player " + playerName + " has no scores recorded");
+                        sender.sendMessage(ChatColor.RED + "玩家 " + playerName + " 没有记录的分数喵");
                     } else {
-                        sender.sendMessage(ChatColor.DARK_GREEN + "Showing " + scores.size() + " tracked objective(s) for " + playerName);
+                        sender.sendMessage(ChatColor.DARK_GREEN + "在计分板上查看 " + scores.size() + " 个跟踪的对象 对: " + playerName);
                         for (Score score : scores) {
                             sender.sendMessage("- " + score.getObjective().getDisplayName() + ": " + score.getScore() + " (" + score.getObjective().getName() + ")");
                         }
@@ -271,24 +271,24 @@ public class ScoreboardCommand extends VanillaCommand {
                 if (args.length == 2) {
                     Set<Team> teams = mainScoreboard.getTeams();
                     if (teams.isEmpty()) {
-                        sender.sendMessage(ChatColor.RED + "There are no teams registered on the scoreboard");
+                        sender.sendMessage(ChatColor.RED + "计分板上没有注册的队伍哦");
                     } else {
-                        sender.sendMessage(ChatColor.DARK_GREEN + "Showing " + teams.size() + " teams on the scoreboard");
+                        sender.sendMessage(ChatColor.DARK_GREEN + "查看计分板中 " + teams.size() + " 个队伍");
                         for (Team team : teams) {
-                            sender.sendMessage("- " + team.getName() + ": '" + team.getDisplayName() + "' has " + team.getSize() + " players");
+                            sender.sendMessage("- " + team.getName() + ": '" + team.getDisplayName() + "' 有 " + team.getSize() + " 个玩家");
                         }
                     }
                 } else if (args.length == 3) {
                     String teamName = args[2];
                     Team team = mainScoreboard.getTeam(teamName);
                     if (team == null) {
-                        sender.sendMessage(ChatColor.RED + "No team was found by the name '" + teamName + "'");
+                        sender.sendMessage(ChatColor.RED + "找不到叫做 '" + teamName + "' 的队伍");
                     } else {
                         Set<OfflinePlayer> players = team.getPlayers();
                         if (players.isEmpty()) {
-                            sender.sendMessage(ChatColor.RED + "Team " + team.getName() + " has no players");
+                            sender.sendMessage(ChatColor.RED + "队伍 " + team.getName() + " 没有成员");
                         } else {
-                            sender.sendMessage(ChatColor.DARK_GREEN + "Showing " + players.size() + " player(s) in team " + team.getName());
+                            sender.sendMessage(ChatColor.DARK_GREEN + "查看 " + team.getName() + " 队伍中的 " + players.size() + " 个玩家");
                             sender.sendMessage(offlinePlayerSetToString(players));
                         }
                     }
@@ -303,7 +303,7 @@ public class ScoreboardCommand extends VanillaCommand {
                 }
                 String name = args[2];
                 if (name.length() > 16) {
-                    sender.sendMessage(ChatColor.RED + "The name '" + name + "' is too long for a team, it can be at most 16 characters long");
+                    sender.sendMessage(ChatColor.RED + "队伍名字 '" + name + "' 太长了喵, 最长只能使用16个字符哦");
                 } else if (mainScoreboard.getTeam(name) != null) {
                     sender.sendMessage(ChatColor.RED + "A team with the name '" + name + "' already exists");
                 } else {
@@ -311,7 +311,7 @@ public class ScoreboardCommand extends VanillaCommand {
                     if (args.length > 3) {
                         displayName = StringUtils.join(ArrayUtils.subarray(args, 4, args.length), ' ');
                         if (displayName.length() > 32) {
-                            sender.sendMessage(ChatColor.RED + "The display name '" + displayName + "' is too long for a team, it can be at most 32 characters long");
+                            sender.sendMessage(ChatColor.RED + "显示的名字 '" + displayName + "' 太长了喵, 最长只能使用32个字符哦");
                             return false;
                         }
                     }
@@ -319,7 +319,7 @@ public class ScoreboardCommand extends VanillaCommand {
                     if (displayName != null && displayName.length() > 0) {
                         team.setDisplayName(displayName);
                     }
-                    sender.sendMessage("Added new team '" + team.getName() + "' successfully");
+                    sender.sendMessage("成功添加了 '" + team.getName() + "' 队伍");
                 }
             } else if (args[1].equalsIgnoreCase("remove")) {
                 if (args.length != 3) {
@@ -329,10 +329,10 @@ public class ScoreboardCommand extends VanillaCommand {
                 String name = args[2];
                 Team team = mainScoreboard.getTeam(name);
                 if (team == null) {
-                    sender.sendMessage(ChatColor.RED + "No team was found by the name '" + name + "'");
+                    sender.sendMessage(ChatColor.RED + "找不到叫做 '" + name + "' 的队伍喵");
                 } else {
                     team.unregister();
-                    sender.sendMessage("Removed team " + name);
+                    sender.sendMessage("已删除队伍 " + name);
                 }
             } else if (args[1].equalsIgnoreCase("empty")) {
                 if (args.length != 3) {
@@ -342,16 +342,16 @@ public class ScoreboardCommand extends VanillaCommand {
                 String name = args[2];
                 Team team = mainScoreboard.getTeam(name);
                 if (team == null) {
-                    sender.sendMessage(ChatColor.RED + "No team was found by the name '" + name + "'");
+                    sender.sendMessage(ChatColor.RED + "找不到叫做 '" + name + "' 的队伍喵");
                 } else {
                     Set<OfflinePlayer> players = team.getPlayers();
                     if (players.isEmpty()) {
-                        sender.sendMessage(ChatColor.RED + "Team " + team.getName() + " is already empty, cannot remove nonexistant players");
+                        sender.sendMessage(ChatColor.RED + "队伍 " + team.getName() + " 已经空空的了喵");
                     } else {
                         for (OfflinePlayer player : players) {
                             team.removePlayer(player);
                         }
-                        sender.sendMessage("Removed all " + players.size() + " player(s) from team " + team.getName());
+                        sender.sendMessage("从队伍 " + team.getName() + " 删除了 " + players.size() + " 个玩家");
                     }
                 }
             } else if (args[1].equalsIgnoreCase("join")) {
@@ -362,7 +362,7 @@ public class ScoreboardCommand extends VanillaCommand {
                 String teamName = args[2];
                 Team team = mainScoreboard.getTeam(teamName);
                 if (team == null) {
-                    sender.sendMessage(ChatColor.RED + "No team was found by the name '" + teamName + "'");
+                    sender.sendMessage(ChatColor.RED + "找不到叫做 '" + teamName + "' 的队伍喵");
                 } else {
                     Set<String> addedPlayers = new HashSet<String>();
                     if ((sender instanceof Player) && args.length == 3) {
@@ -382,7 +382,7 @@ public class ScoreboardCommand extends VanillaCommand {
                             addedPlayers.add(offlinePlayer.getName());
                         }
                     }
-                    sender.sendMessage("Added " + addedPlayers.size() + " player(s) to team " + team.getName() + ": " + stringCollectionToString(addedPlayers));
+                    sender.sendMessage("成功添加了 " + addedPlayers.size() + " 个玩家到 " + team.getName() + ": " + stringCollectionToString(addedPlayers));
                 }
             } else if (args[1].equalsIgnoreCase("leave")) {
                 if (!(sender instanceof Player) && args.length < 3) {
@@ -419,10 +419,10 @@ public class ScoreboardCommand extends VanillaCommand {
                     }
                 }
                 if (!left.isEmpty()) {
-                    sender.sendMessage("Removed " + left.size() + " player(s) from their teams: " + stringCollectionToString(left));
+                    sender.sendMessage("从以下队伍中删除了 " + left.size() + " 个玩家: " + stringCollectionToString(left));
                 }
                 if (!noTeam.isEmpty()) {
-                    sender.sendMessage("Could not remove " + noTeam.size() + " player(s) from their teams: " + stringCollectionToString(noTeam));
+                    sender.sendMessage("不能以下队伍中删除 " + noTeam.size() + " 个玩家: " + stringCollectionToString(noTeam));
                 }
             } else if (args[1].equalsIgnoreCase("option")) {
                 if (args.length != 4 && args.length != 5) {
@@ -432,7 +432,7 @@ public class ScoreboardCommand extends VanillaCommand {
                 String teamName = args[2];
                 Team team = mainScoreboard.getTeam(teamName);
                 if (team == null) {
-                    sender.sendMessage(ChatColor.RED + "No team was found by the name '" + teamName + "'");
+                    sender.sendMessage(ChatColor.RED + "找不到叫做 '" + teamName + "' 的队伍喵");
                     return false;
                 }
                 String option = args[3].toLowerCase();
@@ -442,23 +442,23 @@ public class ScoreboardCommand extends VanillaCommand {
                 }
                 if (args.length == 4) {
                     if (option.equals("color")) {
-                        sender.sendMessage(ChatColor.RED + "Valid values for option color are: " + stringCollectionToString(TEAMS_OPTION_COLOR.keySet()));
+                        sender.sendMessage(ChatColor.RED + "可用的颜色选项有: " + stringCollectionToString(TEAMS_OPTION_COLOR.keySet()));
                     } else {
-                        sender.sendMessage(ChatColor.RED + "Valid values for option " + option + " are: true and false");
+                        sender.sendMessage(ChatColor.RED + "可用的 " + option + " 选项有: true 和 false");
                     }
                 } else {
                     String value = args[4].toLowerCase();
                     if (option.equals("color")) {
                         ChatColor color = TEAMS_OPTION_COLOR.get(value);
                         if (color == null) {
-                            sender.sendMessage(ChatColor.RED + "Valid values for option color are: " + stringCollectionToString(TEAMS_OPTION_COLOR.keySet()));
+                            sender.sendMessage(ChatColor.RED + "可用的颜色选项有: " + stringCollectionToString(TEAMS_OPTION_COLOR.keySet()));
                             return false;
                         }
                         team.setPrefix(color.toString());
                         team.setSuffix(ChatColor.RESET.toString());
                     } else {
                         if (!value.equals("true") && !value.equals("false")) {
-                            sender.sendMessage(ChatColor.RED + "Valid values for option " + option + " are: true and false");
+                            sender.sendMessage(ChatColor.RED + "可用的 " + option + " 选项有: true 和 false");
                             return false;
                         }
                         if (option.equals("friendlyfire")) {
@@ -467,11 +467,11 @@ public class ScoreboardCommand extends VanillaCommand {
                             team.setCanSeeFriendlyInvisibles(value.equals("true"));
                         }
                     }
-                    sender.sendMessage("Set option " + option + " for team " + team.getName() + " to " + value);
+                    sender.sendMessage("设置" + team.getName() + "队伍的 " + option + " 选项为 " + value);
                 }
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Usage: /scoreboard <objectives|players|teams>");
+            sender.sendMessage(ChatColor.RED + "用法: /scoreboard <objectives|players|teams>");
             return false;
         }
         return true;
@@ -569,7 +569,7 @@ public class ScoreboardCommand extends VanillaCommand {
         }
         string.delete(string.length() - 2, Integer.MAX_VALUE);
         if (string.length() != lastValue.length()) {
-            string.insert(string.length() - lastValue.length(), "and ");
+            string.insert(string.length() - lastValue.length(), "和 ");
         }
         return string.toString();
 
@@ -583,7 +583,7 @@ public class ScoreboardCommand extends VanillaCommand {
         }
         string.delete(string.length() - 2, Integer.MAX_VALUE);
         if (string.length() != lastValue.length()) {
-            string.insert(string.length() - lastValue.length(), "and ");
+            string.insert(string.length() - lastValue.length(), "和 ");
         }
         return string.toString();
     }

@@ -19,8 +19,8 @@ public class GameRuleCommand extends VanillaCommand {
 
     public GameRuleCommand() {
         super("gamerule");
-        this.description = "Sets a server's game rules";
-        this.usageMessage = "/gamerule <rule name> <value> OR /gamerule <rule name>";
+        this.description = "设置游戏规则喵";
+        this.usageMessage = "/gamerule <规则名字> <值> OR /gamerule <规则名字>";
         this.setPermission("bukkit.command.gamerule");
     }
 
@@ -37,19 +37,19 @@ public class GameRuleCommand extends VanillaCommand {
                     String value = args[1];
 
                     world.setGameRuleValue(rule, value);
-                    Command.broadcastCommandMessage(sender, "Game rule " + rule + " has been set to: " + value);
+                    Command.broadcastCommandMessage(sender, "规则 " + rule + " 已经被设置为: " + value);
                 } else {
                     String value = world.getGameRuleValue(rule);
                     sender.sendMessage(rule + " = " + value);
                 }
             } else {
-                sender.sendMessage(ChatColor.RED + "No game rule called " + rule + " is available");
+                sender.sendMessage(ChatColor.RED + "没有规则叫做 " + rule + " 的说");
             }
 
             return true;
         } else {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
-            sender.sendMessage("Rules: " + this.createString(getGameWorld(sender).getGameRules(), 0, ", "));
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
+            sender.sendMessage("规则: " + this.createString(getGameWorld(sender).getGameRules(), 0, ", "));
 
             return true;
         }

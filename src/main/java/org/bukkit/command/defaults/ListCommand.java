@@ -12,7 +12,7 @@ import com.google.common.collect.ImmutableList;
 public class ListCommand extends VanillaCommand {
     public ListCommand() {
         super("list");
-        this.description = "Lists all online players";
+        this.description = "列出所有在线玩家";
         this.usageMessage = "/list";
         this.setPermission("bukkit.command.list");
     }
@@ -37,7 +37,7 @@ public class ListCommand extends VanillaCommand {
             online.append(player.getDisplayName());
         }
 
-        sender.sendMessage("There are " + players.length + "/" + Bukkit.getMaxPlayers() + " players online:\n" + online.toString());
+        sender.sendMessage("有 " + players.length + "/" + Bukkit.getMaxPlayers() + " 玩家在线喵:\n" + online.toString());
 
         return true;
     }

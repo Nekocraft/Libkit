@@ -29,8 +29,8 @@ public class GiveCommand extends VanillaCommand {
 
     public GiveCommand() {
         super("give");
-        this.description = "Gives the specified player a certain amount of items";
-        this.usageMessage = "/give <player> <item> [amount [data]]";
+        this.description = "给玩家指定的数量的物品喵";
+        this.usageMessage = "/give <玩家名> <物品ID> [数量 [data值]]";
         this.setPermission("bukkit.command.give");
     }
 
@@ -38,7 +38,7 @@ public class GiveCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if ((args.length < 2)) {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 
@@ -63,12 +63,12 @@ public class GiveCommand extends VanillaCommand {
 
                 player.getInventory().addItem(new ItemStack(material, amount, data));
 
-                Command.broadcastCommandMessage(sender, "Gave " + player.getName() + " some " + material.getId() + " (" + material + ")");
+                Command.broadcastCommandMessage(sender, "已给 " + player.getName() + " 了一些 " + material.getId() + " (" + material + ")");
             } else {
-                sender.sendMessage("There's no item called " + args[1]);
+                sender.sendMessage("没有物品叫做 " + args[1] + "的说");
             }
         } else {
-            sender.sendMessage("Can't find player " + args[0]);
+            sender.sendMessage("找不到玩家 " + args[0] + "的说");
         }
 
         return true;

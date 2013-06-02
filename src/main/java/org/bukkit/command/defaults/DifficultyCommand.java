@@ -17,7 +17,7 @@ public class DifficultyCommand extends VanillaCommand {
 
     public DifficultyCommand() {
         super("difficulty");
-        this.description = "Sets the game difficulty";
+        this.description = "设定游戏的难度喵";
         this.usageMessage = "/difficulty <new difficulty> ";
         this.setPermission("bukkit.command.difficulty");
     }
@@ -26,7 +26,7 @@ public class DifficultyCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length != 1 || args[0].length() == 0) {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 
@@ -48,7 +48,7 @@ public class DifficultyCommand extends VanillaCommand {
             Bukkit.getWorlds().get(levelCount).setDifficulty(difficulty);
         }
 
-        Command.broadcastCommandMessage(sender, "Set difficulty to " + difficulty.toString());
+        Command.broadcastCommandMessage(sender, "喵 难度设定为: " + difficulty.toString());
         return true;
     }
 

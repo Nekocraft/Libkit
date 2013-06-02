@@ -14,8 +14,8 @@ import com.google.common.collect.ImmutableList;
 public class ExpCommand extends VanillaCommand {
     public ExpCommand() {
         super("xp");
-        this.description = "Gives the specified player a certain amount of experience. Specify <amount>L to give levels instead, with a negative amount resulting in taking levels.";
-        this.usageMessage = "/xp <amount> [player] OR /xp <amount>L [player]";
+        this.description = "对指定玩家增加经验喵 负数可以减少哦";
+        this.usageMessage = "/xp <经验值> [玩家名] OR /xp <经验值>L [玩家名]";
         this.setPermission("bukkit.command.xp");
     }
 
@@ -49,29 +49,29 @@ public class ExpCommand extends VanillaCommand {
                 if (isLevel) {
                     if (isTaking) {
                         player.giveExpLevels(-amount);
-                        Command.broadcastCommandMessage(sender, "Taken " + amount + " level(s) from " + player.getName());
+                        Command.broadcastCommandMessage(sender, "减少了 " + amount + " 经验等级对 " + player.getName());
                     } else {
                         player.giveExpLevels(amount);
-                        Command.broadcastCommandMessage(sender, "Given " + amount + " level(s) to " + player.getName());
+                        Command.broadcastCommandMessage(sender, "增加了 " + amount + " 经验等级给 " + player.getName());
                     }
                 } else {
                     if (isTaking) {
-                        sender.sendMessage(ChatColor.RED + "Taking experience can only be done by levels, cannot give players negative experience points");
+                        sender.sendMessage(ChatColor.RED + "减少经验只能使用等级喵");
                         return false;
                     } else {
                         player.giveExp(amount);
-                        Command.broadcastCommandMessage(sender, "Given " + amount + " experience to " + player.getName());
+                        Command.broadcastCommandMessage(sender, "增加了 " + amount + " 经验点数给 " + player.getName());
                     }
                 }
             } else {
-                sender.sendMessage("Can't find player, was one provided?\n" + ChatColor.RED + "Usage: " + usageMessage);
+                sender.sendMessage("找不到玩家喵 \n" + ChatColor.RED + "用法: " + usageMessage);
                 return false;
             }
 
             return true;
         }
 
-        sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+        sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
         return false;
     }
 

@@ -17,8 +17,8 @@ public class BanIpCommand extends VanillaCommand {
 
     public BanIpCommand() {
         super("ban-ip");
-        this.description = "Prevents the specified IP address from using this server";
-        this.usageMessage = "/ban-ip <address|player> [reason ...]";
+        this.description = "禁止指定IP的玩家进入此服务器";
+        this.usageMessage = "/ban-ip <IP地址|玩家名> [理由 ...]";
         this.setPermission("bukkit.command.ban.ip");
     }
 
@@ -26,7 +26,7 @@ public class BanIpCommand extends VanillaCommand {
     public boolean execute(CommandSender sender, String currentAlias, String[] args) {
         if (!testPermission(sender)) return true;
         if (args.length < 1)  {
-            sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+            sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
             return false;
         }
 
@@ -37,7 +37,7 @@ public class BanIpCommand extends VanillaCommand {
             Player player = Bukkit.getPlayer(args[0]);
 
             if (player == null) {
-                sender.sendMessage(ChatColor.RED + "Usage: " + usageMessage);
+                sender.sendMessage(ChatColor.RED + "用法: " + usageMessage);
                 return false;
             }
 
@@ -51,7 +51,7 @@ public class BanIpCommand extends VanillaCommand {
         // TODO: Kick on ban
         Bukkit.banIP(ip);
 
-        Command.broadcastCommandMessage(sender, "Banned IP Address " + ip);
+        Command.broadcastCommandMessage(sender, "已封禁IP: " + ip);
     }
 
     @Override

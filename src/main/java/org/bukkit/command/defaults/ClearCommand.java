@@ -27,8 +27,8 @@ public class ClearCommand extends VanillaCommand {
 
     public ClearCommand() {
         super("clear");
-        this.description = "Clears the player's inventory. Can specify item and data filters too.";
-        this.usageMessage = "/clear <player> [item] [data]";
+        this.description = "清除玩家的背包. 可以指定物品和data值过滤器";
+        this.usageMessage = "/clear <玩家> [物品ID] [data值]";
         this.setPermission("bukkit.command.clear");
     }
 
@@ -49,7 +49,7 @@ public class ClearCommand extends VanillaCommand {
             if (args.length > 1 && !(args[1].equals("-1"))) {
                 Material material = Material.matchMaterial(args[1]);
                 if (material == null) {
-                    sender.sendMessage(ChatColor.RED + "There's no item called " + args[1]);
+                    sender.sendMessage(ChatColor.RED + "物品 " + args[1] + "并~ 不~ 存~ 在~");
                     return false;
                 }
 
@@ -61,11 +61,11 @@ public class ClearCommand extends VanillaCommand {
             int data = args.length >= 3 ? getInteger(sender, args[2], 0) : -1;
             int count = player.getInventory().clear(id, data);
 
-            Command.broadcastCommandMessage(sender, "Cleared the inventory of " + player.getDisplayName() + ", removing " + count + " items");
+            Command.broadcastCommandMessage(sender, "清除了 " + player.getDisplayName() + " 的背包, 移除了 " + count + " 个物品~");
         } else if (args.length == 0) {
-            sender.sendMessage(ChatColor.RED + "Please provide a player!");
+            sender.sendMessage(ChatColor.RED + "先指定一个玩家哦!");
         } else {
-            sender.sendMessage(ChatColor.RED + "Can't find player " + args[0]);
+            sender.sendMessage(ChatColor.RED + "喵 找不到玩家 " + args[0]);
         }
 
         return true;
