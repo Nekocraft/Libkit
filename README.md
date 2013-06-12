@@ -1,16 +1,42 @@
-Bukkit
-======
+Libkit
+=============
+Libkit (Liberate Bukkit) is a Bukkit API fork that has enhanced features and optimizations as well as compability adjustments to allow older plugins that do not support the new namespace version system that Bukkit put into place.
 
-A Minecraft Server API.
+## Contributing
+Are you a talented programmer looking to contribute some code? We'd love the help!
+* Any section inside OBC or NMS should be commented with "Libigot start" or "Libigot end", unless it belongs to a single line, in which case "Libigot" should be commented next to that line.
+* The code you write should be as clean as possible.
+* If you have to unshade classes first add them unchanged with a commit message like "Add <classname> for diff visibility.", then make your changes with the next commit.
+* You should only modify something if it is server-side. If the change you make affects client-side, it will not work, and it should be denied/removed.
+* All commits should have a title and a bulleted description with each of the added features and/or restrictions.
 
-Website: [http://bukkit.org](http://bukkit.org)  
-Bugs/Suggestions: [http://leaky.bukkit.org](http://leaky.bukkit.org)  
-Contributing Guidelines: [CONTRIBUTING.md](https://github.com/Bukkit/Bukkit/blob/master/CONTRIBUTING.md)
+## The license
+Libkit and Libigot are licensed under the [GPLv3 License][License].
 
-Compilation
------------
+## Getting the source
+The latest and greatest source can be found here on [GitHub][Source].
 
-We use maven to handle our dependencies.
+If you are using Git, use this command to clone the project:
+
+    git clone git://github.com/Libigot/Libkit.git
+
+## Compiling the source
+Libigot and Libkit use Maven to handle its dependencies.
 
 * Install [Maven 3](http://maven.apache.org/download.html)
-* Check out this repo and: `mvn clean install`
+* Checkout this repo and run: `mvn`
+
+## Learn More
+* [Homepage]
+* [Source]
+* [Builds]
+* [Issues]
+* [License]
+* [IRC] - #libigot on irc.esper.net
+
+[Homepage]: http://www.libigot.org
+[License]: http://www.gnu.org/licenses/gpl.html
+[Source]: https://github.com/Libigot/Libkit.git
+[Builds]: http://build.libigot.org
+[Issues]: http://issues.libigot.org
+[IRC]: http://chat.libigot.org
