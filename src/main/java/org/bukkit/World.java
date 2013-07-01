@@ -256,6 +256,18 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     public boolean regenerateChunk(int x, int z);
 
+    // Libigot start
+    /**
+     * Regenerates the {@link Chunk} at the specified coordinates and whether or not to trigger block updates
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @param refresh Whether or not to trigger block updates for the chunk
+     * @return Whether the chunk was actually regenerated
+     */
+    public boolean regenerateChunk(int x, int z, boolean refresh);
+    // Libigot end
+
     /**
      * Resends the {@link Chunk} to all clients
      *
