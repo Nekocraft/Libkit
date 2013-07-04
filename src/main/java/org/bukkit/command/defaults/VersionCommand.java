@@ -29,7 +29,9 @@ public class VersionCommand extends BukkitCommand {
         if (!testPermission(sender)) return true;
 
         if (args.length == 0) {
-            sender.sendMessage("This server is running Libigot version: " + Bukkit.getVersion() + " (Implementing API version: " + Bukkit.getBukkitVersion() + ")");
+            if (Bukkit.getVersion() != null) {
+                sender.sendMessage("This server is running Libigot #" + Bukkit.getVersion().toString().replace("git-", ""));
+            }
         } else {
             StringBuilder name = new StringBuilder();
 

@@ -62,7 +62,9 @@ public final class Bukkit {
         }
 
         Bukkit.server = server;
-        server.getLogger().info("This server is running Libigot version: " + getVersion() + " (Implementing API version: " + getBukkitVersion() + ")");
+        if (Bukkit.getVersion() != null) {
+            server.getLogger().info("This server is running Libigot #" + Bukkit.getVersion().toString().replace("git-", ""));
+        }
     }
 
     /**
