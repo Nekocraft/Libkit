@@ -14,7 +14,7 @@ public class EntityRemoveEvent extends EntityEvent {
 
     /**
      * The constructor for the event.
-     * 
+     *
      * @param entity The entity that gets removed.
      */
     public EntityRemoveEvent(Entity entity) {
@@ -23,7 +23,7 @@ public class EntityRemoveEvent extends EntityEvent {
 
     /**
      * Gets the entity that caused the aremove event.
-     * 
+     *
      * @return The entity that caused the remove event.
      */
     @Override

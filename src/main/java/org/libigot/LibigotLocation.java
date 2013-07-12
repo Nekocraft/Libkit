@@ -22,7 +22,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Create a LibigotLocation from a Bukkit Location
-     * 
+     *
      * @param location The Bukkit Location
      */
     public LibigotLocation(Location location) {
@@ -31,7 +31,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Create a LibigotLocation from a Bukkit Block
-     * 
+     *
      * @param block The Bukkit Block
      */
     public LibigotLocation(Block block) {
@@ -40,7 +40,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Create a LibigotLocation from a Libigot Block
-     * 
+     *
      * @param block The Libigot Block
      */
     public LibigotLocation(LibigotBlock block) {
@@ -49,7 +49,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Create a LibigotLocation from a World and coordinates
-     * 
+     *
      * @param world The World
      * @param x The X coordinate
      * @param y The Y coordinate
@@ -61,7 +61,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Create a LibigotLocation from a World name and coordinates
-     * 
+     *
      * @param world The World
      * @param x The X coordinate
      * @param y The Y coordinate
@@ -73,7 +73,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Create a LibigotLocation from a World, coordinates, yaw and pitch
-     * 
+     *
      * @param world The World
      * @param x The X coordinate
      * @param y The Y coordinate
@@ -87,7 +87,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Create a LibigotLocation from a World name, coordinates, yaw and pitch
-     * 
+     *
      * @param world The World
      * @param x The X coordinate
      * @param y The Y coordinate
@@ -106,7 +106,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the World saved in this location
-     * 
+     *
      * @return The world or null if the world is unloaded
      */
     public LibigotWorld getWorld() {
@@ -115,7 +115,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the World name saved in this location
-     * 
+     *
      * @return The world name
      */
     public String getWorldName() {
@@ -124,7 +124,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the X coordinate
-     * 
+     *
      * @return The X coordinate
      */
     public double getX() {
@@ -133,7 +133,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the Y coordinate
-     * 
+     *
      * @return The Y coordinate
      */
     public double getY() {
@@ -142,7 +142,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the Z coordinate
-     * 
+     *
      * @return The Z coordinate
      */
     public double getZ() {
@@ -151,7 +151,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the yaw
-     * 
+     *
      * @return The yaw
      */
     public float getYaw() {
@@ -160,7 +160,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the pitch
-     * 
+     *
      * @return The pitch
      */
     public float getPitch() {
@@ -169,7 +169,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the corresponding Bukkit Location
-     * 
+     *
      * @return The Bukkit Location or null if the world is unloaded
      */
     public Location getHandle() {
@@ -182,7 +182,7 @@ public class LibigotLocation implements Serializable {
 
     /**
      * Get the Block at this location
-     * 
+     *
      * @return The Block or null if the world is unloaded
      */
     public LibigotBlock getBlock() {

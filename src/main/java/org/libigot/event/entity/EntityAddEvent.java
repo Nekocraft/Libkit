@@ -16,7 +16,7 @@ public class EntityAddEvent extends EntityEvent implements Cancellable {
 
     /**
      * The constructor for the event.
-     * 
+     *
      * @param entity The entity that gets added.
      */
     public EntityAddEvent(Entity entity) {
@@ -56,7 +56,7 @@ public class EntityAddEvent extends EntityEvent implements Cancellable {
     public HandlerList getHandlers() {
         return EntityAddEvent.handlers;
     }
-    
+
     public static HandlerList getHandlerList() {
         return EntityAddEvent.handlers;
     }

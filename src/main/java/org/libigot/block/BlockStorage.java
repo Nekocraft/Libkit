@@ -16,7 +16,7 @@ public class BlockStorage implements Serializable {
 
     /**
      * Create a BlockStorage from a Bukkit block
-     * 
+     *
      * @param block The bukkit block
      */
     public BlockStorage(Block block) {
@@ -60,7 +60,7 @@ public class BlockStorage implements Serializable {
 
     /**
      * Get a LibigotLocation
-     * 
+     *
      * @return The LibigotLocation
      */
     public LibigotLocation getLocation() {
@@ -69,7 +69,7 @@ public class BlockStorage implements Serializable {
 
     /**
      * Get the block ID
-     * 
+     *
      * @return the ID
      */
     public int getID() {
@@ -78,7 +78,7 @@ public class BlockStorage implements Serializable {
 
     /**
      * Get the block data
-     * 
+     *
      * @return the data
      */
     public byte getData() {
@@ -87,7 +87,7 @@ public class BlockStorage implements Serializable {
 
     /**
      * Set the block back in the world.
-     * 
+     *
      * @return True if the block has been setted, false otherwise
      */
     public boolean set() {
@@ -96,7 +96,7 @@ public class BlockStorage implements Serializable {
 
     /**
      * Set the block back in the world.
-     * 
+     *
      * @param applyPhysics Apply physics after setting the block?
      * @return True if the block has been setted, false otherwise
      */

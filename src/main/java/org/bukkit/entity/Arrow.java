@@ -4,7 +4,8 @@ package org.bukkit.entity;
  * Represents an arrow.
  */
 public interface Arrow extends Projectile {
-    
+
+    //Libigot start
     /**
      * Gets the base damage this Arrow deals when it strikes.
      * Arrow damage is baseDamage * norm of the velocity vector (roughly).
@@ -12,7 +13,7 @@ public interface Arrow extends Projectile {
      * @return damage
      */
     public double getDamage();
-    
+
     /**
      * Sets the base damage the arrow will deal when it lands.  Arrow damage is always modified by the velocity of the projectile.
      * Arrow damage is baseDamage * norm of the velocity vector (roughly).
@@ -44,4 +45,5 @@ public interface Arrow extends Projectile {
      * @param critical
      */
     public void setCritical(boolean critical);
+    //Libigot end
 }

@@ -25,7 +25,7 @@ public class PlayerItemDamageEvent extends PlayerEvent implements Cancellable {
 
     /**
      * Gets the amount of durability damage this item will be taking.
-     * 
+     *
      * @return durability change
      */
     public int getDamage() {

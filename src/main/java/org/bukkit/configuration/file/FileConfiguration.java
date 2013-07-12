@@ -19,7 +19,7 @@ import org.bukkit.configuration.MemoryConfiguration;
  * This is a base class for all File based implementations of {@link Configuration}
  */
 public abstract class FileConfiguration extends MemoryConfiguration {
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator"); //Libigot
 
     /**
      * Creates an empty {@link FileConfiguration} with no default values.

@@ -10,7 +10,7 @@ import org.bukkit.plugin.messaging.PluginMessageRecipient;
  * Represents a player in Libigot.
  */
 public interface LibigotPlayer extends HumanEntity, Conversable, CommandSender, OfflinePlayer, PluginMessageRecipient {
-    
+
     /**
      * Gets a players ping
      *

@@ -29,7 +29,9 @@ public class VersionCommand extends BukkitCommand {
         if (!testPermission(sender)) return true;
 
         if (args.length == 0) {
-            sender.sendMessage("服务器版本: " + Bukkit.getVersion() + " (API版本: " + Bukkit.getBukkitVersion() + ")");
+            if (Bukkit.getVersion() != null) {
+                sender.sendMessage("服务器版本 #" + Bukkit.getVersion().toString().replace("git-", "") + " (API版本: " + Bukkit.getBukkitVersion() + ")");
+            }
         } else {
             StringBuilder name = new StringBuilder();
 

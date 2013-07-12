@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityEvent;
 
 /**
  * This Event is called whenever a Entity moves.
- * 
+ *
  * If no Plugin is listening this event isn't called
  * at all to save performance.
  */
@@ -21,7 +21,7 @@ public class EntityMoveEvent extends EntityEvent implements Cancellable {
 
     /**
      * The constructor for the event.
-     * 
+     *
      * @param entity The moving entity.
      * @param from The location the entity is moving from.
      * @param to The location the entity is moving to.
@@ -32,7 +32,7 @@ public class EntityMoveEvent extends EntityEvent implements Cancellable {
         this.to = to;
         this.isCancelled = false;
     }
-    
+
     /**
      * Sets the cancelled state of the event.
      *
@@ -41,7 +41,7 @@ public class EntityMoveEvent extends EntityEvent implements Cancellable {
     public void setCancelled(boolean isCancelled) {
         this.isCancelled = isCancelled;
     }
-    
+
     /**
      * Sets the entities new location.
      *
@@ -101,7 +101,7 @@ public class EntityMoveEvent extends EntityEvent implements Cancellable {
     public HandlerList getHandlers() {
         return EntityMoveEvent.handlers;
     }
-    
+
     public static HandlerList getHandlerList() {
         return EntityMoveEvent.handlers;
     }

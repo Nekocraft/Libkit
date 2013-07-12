@@ -3,6 +3,7 @@ package org.libigot.event.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.block.Block;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -19,22 +20,25 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
     private boolean isCancelled;
     private List<HumanEntity> humans;
     private List<PotionEffect> potions;
+    private Block beacon;
 
     /**
      * The constructor for the event.
-     * 
+     *
      * @param humans A list of HumanEntities affected by this event.
      * @param potions A list of PotionEffects the entities should be affected with.
+     * @param beacon The beacon block associated with this event.
      */
-    public BeaconPotionEffectEvent(List<HumanEntity> humans, List<PotionEffect> potions) {
+    public BeaconPotionEffectEvent(List<HumanEntity> humans, List<PotionEffect> potions, Block beacon) {
         this.humans = (humans != null ? humans : new ArrayList<HumanEntity>());
         this.potions = (potions != null ? potions : new ArrayList<PotionEffect>());
         this.isCancelled = false;
+        this.beacon = beacon;
     }
 
     /**
      * Sets the cancelled state of the event
-     * 
+     *
      * @param true if the event should be cancelled, false otherwise.
      */
     public void setCancelled(boolean isCancelled) {
@@ -43,7 +47,7 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
 
     /**
      * Sets affected players.
-     * 
+     *
      * @param humans A list of HumanEntities affected by this event.
      */
     public void setEntities(List<HumanEntity> humans) {
@@ -52,7 +56,7 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
 
     /**
      * Sets applied potions.
-     * 
+     *
      * @param potions A list of PotionEffects the entities should be affected with.
      */
     public void setEffects(List<PotionEffect> potions) {
@@ -61,7 +65,7 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
 
     /**
      * Gets affected players.
-     * 
+     *
      * @return Thelist of HumanEntities affected by this event.
      */
     public List<HumanEntity> getEntities() {
@@ -70,7 +74,7 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
 
     /**
      * Gets applied potions.
-     * 
+     *
      * @return The list of PotionEffects the entities should be affected with.
      */
     public List<PotionEffect> getEffects() {
@@ -79,7 +83,7 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
 
     /**
      * Gets the cancelled state of the event.
-     * 
+     *
      * @return true if the event should be cancelled, false otherwise.
      */
     public boolean isCancelled() {
@@ -89,5 +93,28 @@ public class BeaconPotionEffectEvent extends Event implements Cancellable {
     @Override
     public HandlerList getHandlers() {
         return BeaconPotionEffectEvent.handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return BeaconPotionEffectEvent.handlers;
+    }
+
+    /**
+     * Gets the beacon.
+     * 
+     * @return the beacon block associated with this event.
+     */
+    public Block getBeaconBlock() {
+        return this.beacon;
+    }
+
+    /**
+     * Sets the beacon
+     * 
+     * @param beacon The beacon block to set as associated with this event
+     */
+    public void setBeaconBlock(Block beacon) {
+        this.beacon = beacon;
+        return;
     }
 }

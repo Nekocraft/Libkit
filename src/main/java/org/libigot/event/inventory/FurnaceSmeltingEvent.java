@@ -15,14 +15,14 @@ public class FurnaceSmeltingEvent extends BlockEvent implements Cancellable {
     private ItemStack source;
     private int cookTime;
     private boolean cancelled;
-    
+
     public FurnaceSmeltingEvent(final Block furnace, final ItemStack source, final int cookTime) {
         super(furnace);
         this.source = source;
         this.cookTime = cookTime;
         this.cancelled = false;
     }
-    
+
     /**
      * Gets the smelting ItemStack for this event
      *
@@ -31,25 +31,25 @@ public class FurnaceSmeltingEvent extends BlockEvent implements Cancellable {
     public ItemStack getSource() {
         return source;
     }
-    
+
     /**
      * Gets the cooktime for this item
-     * 
+     *
      * @return cookTime the current cooking time for the item
      */
     public int getCookTime() {
         return cookTime;
     }
-    
+
     /**
      * Sets the cooktime for this item
-     * 
+     *
      * @param cookTime Current cook time for the item
      */
     public void setCookTime(int cookTime) {
         this.cookTime = cookTime;
     }
-    
+
     public boolean isCancelled() {
         return cancelled;
     }

@@ -1,6 +1,6 @@
 Libkit
 =============
-Liberate Bukkit (Libkit for short) is a Bukkit API fork that has enhanced features and optimizations as well as compability adjustments to allow older plugins that do not support the new namespace version system that Bukkit put into place.
+Libkit (Liberate Bukkit) is a Bukkit API fork that has enhanced features and optimizations as well as compability adjustments to allow older plugins that do not support the new namespace version system that Bukkit put into place.
 
 ## Contributing
 Are you a talented programmer looking to contribute some code? We'd love the help!
@@ -23,7 +23,7 @@ If you are using Git, use this command to clone the project:
 ## Compiling the source
 Libigot and Libkit use Maven to handle its dependencies.
 
-* Install [Maven 3](http://maven.apache.org/download.html)  
+* Install [Maven 3](http://maven.apache.org/download.html)
 * Checkout this repo and run: `mvn`
 
 ## Learn More
@@ -36,7 +36,7 @@ Libigot and Libkit use Maven to handle its dependencies.
 
 [Homepage]: http://www.libigot.org
 [License]: http://www.gnu.org/licenses/gpl.html
-[Source]: https://github.com/Libigot/Libigot.git
+[Source]: https://github.com/Libigot/Libkit.git
 [Builds]: http://build.libigot.org
-[Issues]: https://github.com/Libigot/Libigot/issues
-[IRC]: http://libigot.org/pages/chat/
+[Issues]: http://issues.libigot.org
+[IRC]: http://chat.libigot.org

@@ -256,6 +256,18 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     public boolean regenerateChunk(int x, int z);
 
+    // Libigot start
+    /**
+     * Regenerates the {@link Chunk} at the specified coordinates and whether or not to trigger block updates
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @param refresh Whether or not to trigger block updates for the chunk
+     * @return Whether the chunk was actually regenerated
+     */
+    public boolean regenerateChunk(int x, int z, boolean refresh);
+    // Libigot end
+
     /**
      * Resends the {@link Chunk} to all clients
      *
@@ -1062,6 +1074,56 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return True if rule exists
      */
     public boolean isGameRule(String rule);
+
+    // Spigot start
+    public class Spigot
+    {
+
+        /**
+         * Plays an effect to all players within a default radius around a given
+         * location.
+         *
+         * @param location the {@link Location} around which players must be to
+         * see the effect
+         * @param effect the {@link Effect}
+         * @throws IllegalArgumentException if the location or effect is null.
+         * It also throws when the effect requires a material or a material data
+         */
+        public void playEffect(Location location, Effect effect)
+        {
+            throw new UnsupportedOperationException( "Not supported yet." );
+        }
+
+        /**
+         * Plays an effect to all players within a default radius around a given
+         * location. The effect will use the provided material (and material
+         * data if required). The particle's position on the client will be the
+         * given location, adjusted on each axis by a normal distribution with
+         * mean 0 and standard deviation given in the offset parameters, each
+         * particle has independently calculated offsets. The effect will have
+         * the given speed and particle count if the effect is a particle. Some
+         * effect will create multiple particles.
+         *
+         * @param location the {@link Location} around which players must be to
+         * see the effect
+         * @param effect effect the {@link Effect}
+         * @param id the item/block/data id for the effect
+         * @param data the data value of the block/item for the effect
+         * @param offsetX the amount to be randomly offset by in the X axis
+         * @param offsetY the amount to be randomly offset by in the Y axis
+         * @param offsetZ the amount to be randomly offset by in the Z axis
+         * @param speed the speed of the particles
+         * @param particleCount the number of particles
+         * @param radius the radius around the location
+         */
+        public void playEffect(Location location, Effect effect, int id, int data, float offsetX, float offsetY, float offsetZ, float speed, int particleCount, int radius)
+        {
+            throw new UnsupportedOperationException( "Not supported yet." );
+        }
+    }
+
+    Spigot spigot();
+    // Spigot end
 
     /**
      * Represents various map environment types that a world may be

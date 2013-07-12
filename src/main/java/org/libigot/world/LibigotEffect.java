@@ -22,13 +22,13 @@ public enum LibigotEffect {
     WATER_DROP("dripWater"),
     LAVA_DROP("dripLava"),
     SLIME_SPLATTER("slime");
-    
+
     private final String name;
 
     LibigotEffect(String name) {
         this.name = name;
     }
-    
+
     public String getName() {
         return this.name;
     }

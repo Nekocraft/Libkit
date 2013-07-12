@@ -5,7 +5,7 @@ public class Libigot {
 
     private static LibigotServer server;
     static LibigotScheduler scheduler;
-    
+
     /**
      * Returns the LibigotServer instance.
      *
@@ -14,7 +14,7 @@ public class Libigot {
     public static LibigotServer getServer() {
         return Libigot.server;
     }
-    
+
     public static void setServer(LibigotServer server) {
         if (server != null) {
             if (Libigot.server == null) {
@@ -24,7 +24,7 @@ public class Libigot {
             }
         }
     }
-    
+
     public static LibigotScheduler setScheduler(LibigotScheduler scheduler) {
         if(scheduler != null && Libigot.scheduler == null) {
             Libigot.scheduler = scheduler;

@@ -25,7 +25,7 @@ public interface LibigotServer {
 
     /**
      * Gets a block at a specific location.
-     * 
+     *
      * @param world The world the block is in.
      * @param x The X coordinate of the block.
      * @param y The Y coordinate of the block.
@@ -36,7 +36,7 @@ public interface LibigotServer {
 
     /**
      * Gets a block at a specific location.
-     * 
+     *
      * @param world The world the block is in.
      * @param x The X coordinate of the block.
      * @param y The Y coordinate of the block.
@@ -47,7 +47,7 @@ public interface LibigotServer {
 
     /**
      * Transforms a Bukkit block into a Libigot block.
-     * 
+     *
      * @param block The Bukkit block.
      * @return The Libigot block.
      */
@@ -83,7 +83,7 @@ public interface LibigotServer {
      * @return The LibigotPlayer array
      */
     public LibigotPlayer[] getOnlinePlayers();
-    
+
     /**
      * Returns a Libigot world
      *
@@ -91,39 +91,39 @@ public interface LibigotServer {
      * @return The world
      */
     public LibigotWorld getWorld(String name);
-    
+
     /**
      * Transforms a Bukkit world into a Libigot world.
-     * 
-     * @param block The Bukkit world.
+     *
+     * @param world The Bukkit world.
      * @return The Libigot world.
      */
     public LibigotWorld toLibigot(World world);
 
     /**
      * Get if the server is in debug mode
-     * 
+     *
      * @return true if the server is in debug mode, false otherwise
      */
     public boolean getDebug();
-    
+
     /**
      * Set the servers debug mode
-     * 
+     *
      * @param debug true to set the server is in debug mode, false to disable it
      */
     public void setDebug(boolean debug);
-    
+
     /**
-     * Gets if the minecraft server uses Netty
-     * 
-     * @return true if the minecraft server uses Netty, false otherwise
+     * Gets the number of threads netty uses
+     *
+     * @return the number of netty threads
      */
-    public boolean getUseNetty();
-    
+    public int getNettyThreads();
+
     /**
      * Gets the minecraft servers current tick.
-     * 
+     *
      * @return the current tick.
      */
     public int getCurrentTick();
